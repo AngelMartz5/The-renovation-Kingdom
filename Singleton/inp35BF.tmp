@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1qseg5w18qoi"]
+
+[ext_resource type="Script" path="res://Singleton/INPUTS.gd" id="1_o0jva"]
+
+[node name="INPUTS" type="Node"]
+script = ExtResource("1_o0jva")
