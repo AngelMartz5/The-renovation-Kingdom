@@ -1,0 +1,8 @@
+extends Node
+
+enum ACTIONBUTTONS{
+	EXIT,
+	ACTION,
+	SPECIAL,
+	DIALOG
+}

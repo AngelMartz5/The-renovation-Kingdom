@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name RiddenAnimals
+class_name Interactuable
 
 @onready var information = $Information
 @export var domesticado : bool = false

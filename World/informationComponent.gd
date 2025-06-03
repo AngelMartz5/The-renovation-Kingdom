@@ -9,3 +9,5 @@ class_name INFORMATION
 @export var velocidad_inicial : int = 150
 @export var size : float = 3
 @export var life : int = 100;
+
+var isonAction : bool = false

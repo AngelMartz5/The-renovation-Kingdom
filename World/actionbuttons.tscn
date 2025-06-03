@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnvkki5xsomg2"]
+
+[ext_resource type="Script" path="res://World/actionbuttons.gd" id="1_0qa7p"]
+[ext_resource type="FontFile" uid="uid://t0k84moigp81" path="res://Fonts/Kumar_One/KumarOne-Regular.ttf" id="1_t6qer"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ena1"]
+bg_color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7ssi"]
+size = Vector2(107, 29)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jd2kg"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig5dv"]
+bg_color = Color(1, 1, 1, 0.756863)
+
+[node name="actionbuttons" type="Button"]
+texture_filter = 1
+offset_left = -8.0
+offset_top = -98.0
+offset_right = 102.0
+offset_bottom = -60.0
+theme_override_fonts/font = ExtResource("1_t6qer")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ena1")
+text = "EXAMPLE"
+script = ExtResource("1_0qa7p")
+type = 2
+timeToFinish = 10
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -3)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(54.5, 22.5)
+shape = SubResource("RectangleShape2D_r7ssi")
+
+[node name="First" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = -5.0
+offset_right = 115.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jd2kg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ig5dv")
+value = 100.0
+show_percentage = false
+
+[node name="Second" type="ProgressBar" parent="."]
+offset_left = 110.0
+offset_right = 115.0
+offset_bottom = 37.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jd2kg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ig5dv")
+value = 100.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Third" type="ProgressBar" parent="."]
+offset_left = -5.0
+offset_top = 32.0
+offset_right = 110.0
+offset_bottom = 37.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jd2kg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ig5dv")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="Fourth" type="ProgressBar" parent="."]
+offset_left = -5.0
+offset_top = -5.0
+offset_bottom = 32.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jd2kg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ig5dv")
+value = 100.0
+fill_mode = 3
+show_percentage = false
