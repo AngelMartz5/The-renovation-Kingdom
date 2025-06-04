@@ -1,22 +1,24 @@
 extends Area2D
-@export var OWNER:CharacterBody2D
+class_name InteractZone
 
-@onready var item_camera_2d: PhantomCamera2D = $PhantomCamera2D
+@onready var interact_component = $"../InteractComponent" as INTERACT
 
-signal interactavailable(enter:bool)
+var bodyinteract : Node2D = null
+
+signal somebodyentered(body:Node2D)
+
 func _ready() -> void:
 	body_entered.connect(Item_entered)
 	body_exited.connect(Item_exited)
 
 func Item_entered(body:Node2D):
 	
-	item_camera_2d.set_priority(11)
 	if body is Interactuable:
-		interactavailable.emit(true)
+		bodyinteract = body
+		somebodyentered.emit(bodyinteract)
 	
 
 func Item_exited(body:Node2D):
-	
-	item_camera_2d.set_priority(0)
 	if body is Interactuable:
-		interactavailable.emit(false)
+		bodyinteract = null
+		somebodyentered.emit(bodyinteract)

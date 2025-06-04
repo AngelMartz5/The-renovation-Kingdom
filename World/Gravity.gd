@@ -3,6 +3,7 @@ extends Node2D
 var Gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const JUMP_VELOCITY = -400.0
 @onready var idle = $"../State Machine/Idle"
+var buttonPressed : bool = false
 
 func _ready():
 	idle.IdleInit.connect(_desplazamiento)
@@ -22,7 +23,7 @@ func _detenimiento(Number : int ):
 func _physics_process(delta):
 	if !owner.is_on_floor():
 		owner.velocity.y += Gravity * delta
-	if Input.is_action_just_pressed("jump") and owner.is_on_floor():
+	if buttonPressed and owner.is_on_floor():
 		owner.velocity.y = JUMP_VELOCITY
 	#print(owner.velocity)
 	owner.move_and_slide()

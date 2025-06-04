@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqmisltbdrgxd"]
+
+[ext_resource type="Script" path="res://World/interactDetector.gd" id="1_mmjk4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_escnj"]
+
+[node name="Interact" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_mmjk4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_escnj")

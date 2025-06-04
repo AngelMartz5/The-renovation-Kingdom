@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bv0bdohtqxfbg"]
+[gd_scene load_steps=58 format=3 uid="uid://bv0bdohtqxfbg"]
 
 [ext_resource type="Script" path="res://State Machine/state_machine.gd" id="1_qcxu8"]
 [ext_resource type="Script" path="res://World/player.gd" id="1_qr6cc"]
@@ -12,9 +12,9 @@
 [ext_resource type="Script" path="res://State Machine/States/run.gd" id="7_r3mse"]
 [ext_resource type="PackedScene" uid="uid://cpsdve1xw188s" path="res://Components/gravity.tscn" id="8_tlyg2"]
 [ext_resource type="PackedScene" uid="uid://bt1kdu7d8mrg5" path="res://Components/interact_component.tscn" id="10_o4xxc"]
+[ext_resource type="Script" path="res://World/interactDetector.gd" id="11_qwkf0"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_lnpny"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_grglc"]
-[ext_resource type="PackedScene" uid="uid://cqmisltbdrgxd" path="res://Components/interact.tscn" id="13_x4xwc"]
 [ext_resource type="FontFile" uid="uid://dvvs3esplqrf1" path="res://Fonts/PressStart2P.ttf" id="15_84ddg"]
 [ext_resource type="FontVariation" uid="uid://bo43k6uev61x6" path="res://Fonts/PressStart.tres" id="16_krc1x"]
 [ext_resource type="PackedScene" uid="uid://dnvkki5xsomg2" path="res://World/actionbuttons.tscn" id="17_g1vi3"]
@@ -154,6 +154,8 @@ animations = [{
 "name": &"Walk",
 "speed": 7.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_escnj"]
 
 [sub_resource type="Animation" id="Animation_17cja"]
 resource_name = "Idle"
@@ -308,7 +310,6 @@ collision_layer = 2
 script = ExtResource("1_qr6cc")
 
 [node name="Information" parent="." instance=ExtResource("2_pdkd1")]
-NAME = "Human"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 18)
@@ -353,14 +354,20 @@ script = ExtResource("7_r3mse")
 OWNER = NodePath("../..")
 Movement = NodePath("../../Movement")
 
+[node name="Interact" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("11_qwkf0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+shape = SubResource("RectangleShape2D_escnj")
+
 [node name="InteractComponent" parent="." instance=ExtResource("10_o4xxc")]
 
 [node name="Gravity" parent="." instance=ExtResource("8_tlyg2")]
 
 [node name="AnimationManager" type="Node" parent="."]
 script = ExtResource("7_jf5jc")
-
-[node name="Interact" parent="." instance=ExtResource("13_x4xwc")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -406,7 +413,6 @@ text = "B"
 horizontal_alignment = 1
 
 [node name="Controller" type="Node2D" parent="."]
-position = Vector2(0, 47)
 
 [node name="Control" type="Control" parent="Controller"]
 layout_mode = 3
@@ -416,46 +422,36 @@ offset_top = -130.0
 offset_right = 37.0
 offset_bottom = -112.0
 
-[node name="NAME" type="Label" parent="Controller/Control"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = -145.0
-offset_right = 111.0
-offset_bottom = -122.0
-theme_override_fonts/font = ExtResource("15_84ddg")
-text = "EXAMPLE"
-vertical_alignment = 1
-
 [node name="actionbuttons" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
 layout_mode = 0
-offset_left = -92.0
-offset_top = -103.0
-offset_right = 18.0
-offset_bottom = -71.0
+offset_left = -10.0
+offset_top = -112.0
+offset_right = 100.0
+offset_bottom = -80.0
 type = 3
-
-[node name="actionbuttons4" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
-layout_mode = 0
-offset_left = -90.0
-offset_top = -12.0
-offset_right = 20.0
-offset_bottom = 20.0
-
-[node name="actionbuttons3" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
-layout_mode = 0
-offset_left = 63.0
-offset_top = -102.0
-offset_right = 173.0
-offset_bottom = -70.0
-type = 1
 
 [node name="actionbuttons2" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
 layout_mode = 0
-offset_left = 64.0
-offset_top = -14.0
-offset_right = 174.0
-offset_bottom = 18.0
+offset_left = -17.0
+offset_top = 0.0
+offset_right = 93.0
+offset_bottom = 32.0
 type = 0
+
+[node name="actionbuttons3" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
+layout_mode = 0
+offset_left = 82.0
+offset_top = -55.0
+offset_right = 192.0
+offset_bottom = -23.0
+type = 1
+
+[node name="actionbuttons4" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
+layout_mode = 0
+offset_left = -103.0
+offset_top = -59.0
+offset_right = 7.0
+offset_bottom = -27.0
 
 [node name="Controller" type="Area2D" parent="Controller" node_paths=PackedStringArray("grandparent", "parent")]
 position = Vector2(11, -169)

@@ -308,7 +308,6 @@ collision_layer = 2
 script = ExtResource("1_qr6cc")
 
 [node name="Information" parent="." instance=ExtResource("2_pdkd1")]
-NAME = "Human"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 18)
@@ -406,7 +405,6 @@ text = "B"
 horizontal_alignment = 1
 
 [node name="Controller" type="Node2D" parent="."]
-position = Vector2(0, 47)
 
 [node name="Control" type="Control" parent="Controller"]
 layout_mode = 3
@@ -416,46 +414,36 @@ offset_top = -130.0
 offset_right = 37.0
 offset_bottom = -112.0
 
-[node name="NAME" type="Label" parent="Controller/Control"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = -145.0
-offset_right = 111.0
-offset_bottom = -122.0
-theme_override_fonts/font = ExtResource("15_84ddg")
-text = "EXAMPLE"
-vertical_alignment = 1
-
 [node name="actionbuttons" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
 layout_mode = 0
-offset_left = -92.0
-offset_top = -103.0
-offset_right = 18.0
-offset_bottom = -71.0
+offset_left = -10.0
+offset_top = -112.0
+offset_right = 100.0
+offset_bottom = -80.0
 type = 3
-
-[node name="actionbuttons4" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
-layout_mode = 0
-offset_left = -90.0
-offset_top = -12.0
-offset_right = 20.0
-offset_bottom = 20.0
-
-[node name="actionbuttons3" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
-layout_mode = 0
-offset_left = 63.0
-offset_top = -102.0
-offset_right = 173.0
-offset_bottom = -70.0
-type = 1
 
 [node name="actionbuttons2" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
 layout_mode = 0
-offset_left = 64.0
-offset_top = -14.0
-offset_right = 174.0
-offset_bottom = 18.0
+offset_left = -17.0
+offset_top = 0.0
+offset_right = 93.0
+offset_bottom = 32.0
 type = 0
+
+[node name="actionbuttons3" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
+layout_mode = 0
+offset_left = 82.0
+offset_top = -55.0
+offset_right = 192.0
+offset_bottom = -23.0
+type = 1
+
+[node name="actionbuttons4" parent="Controller/Control" instance=ExtResource("17_g1vi3")]
+layout_mode = 0
+offset_left = -103.0
+offset_top = -59.0
+offset_right = 7.0
+offset_bottom = -27.0
 
 [node name="Controller" type="Area2D" parent="Controller" node_paths=PackedStringArray("grandparent", "parent")]
 position = Vector2(11, -169)

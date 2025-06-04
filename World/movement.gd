@@ -66,11 +66,13 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	if !enTween and !enTween2:
-		OWNER.velocity.x = movement.x * Velocidad_Actual 
+	if !information.isonAction:
+		if !enTween and !enTween2:
+			OWNER.velocity.x = movement.x * Velocidad_Actual 
+		else:
+			OWNER.velocity.x = velocidadCorrecta
 	else:
-		OWNER.velocity.x = velocidadCorrecta
-	
+		movement = Vector2.ZERO
 	OWNER.move_and_slide()
 
 
