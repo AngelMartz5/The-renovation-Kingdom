@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvv10rvictbhf"]
+
+[ext_resource type="Script" path="res://World/acomodation_component.gd" id="1_kjxsy"]
+
+[node name="AcomodationComponent" type="Node"]
+script = ExtResource("1_kjxsy")

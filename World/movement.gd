@@ -61,8 +61,10 @@ func _process(delta):
 			wallColliding = true
 		else:
 			wallColliding = false
-		_voltear(movement.x)
-		
+	_voltear(information.DirectionFace)
+	
+	
+	
 
 
 func _physics_process(delta):
@@ -71,8 +73,13 @@ func _physics_process(delta):
 			OWNER.velocity.x = movement.x * Velocidad_Actual 
 		else:
 			OWNER.velocity.x = velocidadCorrecta
+		_convertidor(movement.x)
 	else:
-		movement = Vector2.ZERO
+		if !information.acomodation_component.needsAcomodation:
+			movement = Vector2.ZERO
+		else:
+			OWNER.velocity.x = movement.x * Velocidad_Actual 
+	
 	OWNER.move_and_slide()
 
 
@@ -104,8 +111,16 @@ func _decrecimiento_velocidad(velocidad : float):
 	velocidadCorrecta = velocidad
 	
 
-func _voltear(numero : int):
+func _convertidor(numero : int):
 	if numero > 0 :
+		information.DirectionFace = true
+	elif numero < 0:
+		information.DirectionFace = false
+
+func _voltear(bol : bool = false):
+	if bol:
 		information.visuals.scale.x = 1
+		
 	else:
 		information.visuals.scale.x = -1
+	

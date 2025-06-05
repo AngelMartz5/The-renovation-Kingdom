@@ -7,6 +7,7 @@ signal IdleInit
 @export var movement : Node
 
 func Enter():
+	print("Entre "+str(owner))
 	IdleInit.emit()
 
 func Update(delta:float):

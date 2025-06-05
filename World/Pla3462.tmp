@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bv0bdohtqxfbg"]
+[gd_scene load_steps=57 format=3 uid="uid://bv0bdohtqxfbg"]
 
 [ext_resource type="Script" path="res://State Machine/state_machine.gd" id="1_qcxu8"]
 [ext_resource type="Script" path="res://World/player.gd" id="1_qr6cc"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cpsdve1xw188s" path="res://Components/gravity.tscn" id="8_tlyg2"]
 [ext_resource type="PackedScene" uid="uid://bt1kdu7d8mrg5" path="res://Components/interact_component.tscn" id="10_o4xxc"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_lnpny"]
-[ext_resource type="PackedScene" uid="uid://dvv10rvictbhf" path="res://Components/acomodation_component.tscn" id="13_a3133"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_grglc"]
 [ext_resource type="PackedScene" uid="uid://cqmisltbdrgxd" path="res://Components/interact.tscn" id="13_x4xwc"]
 [ext_resource type="FontFile" uid="uid://dvvs3esplqrf1" path="res://Fonts/PressStart2P.ttf" id="15_84ddg"]
@@ -359,8 +358,6 @@ Movement = NodePath("../../Movement")
 
 [node name="AnimationManager" type="Node" parent="."]
 script = ExtResource("7_jf5jc")
-
-[node name="AcomodationComponent" parent="." instance=ExtResource("13_a3133")]
 
 [node name="Interact" parent="." instance=ExtResource("13_x4xwc")]
 

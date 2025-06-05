@@ -9,6 +9,7 @@ extends Button
 @onready var second = $Second
 @onready var third = $Third
 @onready var fourth = $Fourth
+@onready var controller = $"../../Controller"
 
 var pogressbars : Array[ProgressBar] 
 var onTarget : bool = false
@@ -25,6 +26,8 @@ func _ready():
 	pogressbars.insert(3,fourth)
 	_resetbar()
 	self.visibility_changed.connect(_resetbar)
+	self.button_down.connect(_pressButton)
+	self.button_up.connect(_unpressButton)
 
 func _process(delta):
 	if onTarget:
@@ -54,3 +57,12 @@ func _fillbars(time : float):
 	else:
 		onTarget = false
 		completedsignal.emit(type)
+
+func _pressButton():
+	onTarget = true
+	completedsignal.connect(controller._getsignalselection)
+
+func _unpressButton():
+	onTarget = false
+	completedsignal.disconnect(controller._getsignalselection)
+	_resetbar()

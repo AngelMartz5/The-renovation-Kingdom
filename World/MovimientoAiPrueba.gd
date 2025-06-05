@@ -7,9 +7,9 @@ extends Node
 var movedir = 1;
 
 func _process(delta):
-	if !information.isonAction:
+	if !information.isonAction and !information.acomodation_component.needsAcomodation:
 		if movement.wallColliding:
 			movedir = -1
 		movement._movimiento(movedir);
 	else:
-		movement._movimiento(0)
+		pass
