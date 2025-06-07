@@ -6,3 +6,5 @@ enum ACTIONBUTTONS{
 	SPECIAL,
 	DIALOG
 }
+
+var isallcompleted : bool = false

@@ -39,7 +39,6 @@ func _process(delta):
 	
 	if butonRun and !wallColliding and movement.x != 0  and OWNER.is_on_floor():
 		if movement.x < 0 and OWNER.velocity.x > 0 || movement.x > 0 and OWNER.velocity.x < 0:
-			print("BUG")
 			Correr = false
 			_inicio_correr()
 			enTween2 = false
@@ -54,7 +53,6 @@ func _process(delta):
 		if enTween:
 			tweenDeseleracion.stop()
 			enTween = false
-		information.animation_component.SetAnimationPlayer(true)
 		walk.Transitioned.emit(self, "Idle")
 	else:
 		if OWNER.is_on_wall():
@@ -124,3 +122,18 @@ func _voltear(bol : bool = false):
 	else:
 		information.visuals.scale.x = -1
 	
+
+func _FromtoTo(from : Vector2, To : Vector2) -> bool:
+	var positionToGo = from.direction_to(To)
+	
+	if positionToGo.x > 0.099 || positionToGo.x < -0.099:
+		if positionToGo.x > 0:
+			_movimiento(1)
+		else:
+			_movimiento(-1)
+		
+	else:
+		_movimiento(0)
+		return true
+	
+	return false

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5pknjsbi74p5"]
+
+[ext_resource type="Script" path="res://World/horse_node.gd" id="1_ku21d"]
+
+[node name="HorseType" type="Node"]
+script = ExtResource("1_ku21d")

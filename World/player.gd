@@ -14,7 +14,6 @@ func _ready():
 	_somebodyentered()
 	interactavailable.somebodyentered.connect(_somebodyentered)
 	_changeControl(false)
-	
 
 func _input(event):
 	if event.is_action_pressed("Action") and interact_component.somebodyAvalible:
@@ -23,12 +22,12 @@ func _input(event):
 		
 
 func _process(delta):
-	if !information.isonAction:
-		
-		var mov = int(Input.is_action_pressed("right"))- int(Input.is_action_pressed("left"))
-		information.movement._movimiento(mov);
-		information.movement.butonRun = true if Input.is_action_pressed("Run") else false
-		information.gravity.buttonPressed = true if Input.is_action_just_pressed("jump") else false
+	if SignalBus.isallcompleted:
+		if !information.isonAction:
+			var mov = int(Input.is_action_pressed("right"))- int(Input.is_action_pressed("left"))
+			information.movement._movimiento(mov);
+			information.movement.butonRun = true if Input.is_action_pressed("Run") else false
+			information.gravity.buttonPressed = true if Input.is_action_just_pressed("jump") else false
 	
 	
 

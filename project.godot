@@ -22,6 +22,7 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 QuestManager="*res://addons/quest_manager/QuestManager.gd"
 SignalBus="*res://Singleton/SignalBus.gd"
+TYPE="*res://Singleton/TYPE.gd"
 
 [dialogic]
 

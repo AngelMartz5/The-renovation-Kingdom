@@ -1,10 +1,9 @@
-[gd_scene load_steps=59 format=3 uid="uid://bv0bdohtqxfbg"]
+[gd_scene load_steps=58 format=3 uid="uid://bv0bdohtqxfbg"]
 
 [ext_resource type="Script" path="res://State Machine/state_machine.gd" id="1_qcxu8"]
 [ext_resource type="Script" path="res://World/player.gd" id="1_qr6cc"]
 [ext_resource type="Texture2D" uid="uid://bbteh837urvhm" path="res://sprites/New/Character_base.png" id="2_mp6ak"]
 [ext_resource type="PackedScene" uid="uid://biva725uc0onb" path="res://Components/information.tscn" id="2_pdkd1"]
-[ext_resource type="Script" path="res://World/player_type.gd" id="2_t1150"]
 [ext_resource type="Script" path="res://State Machine/States/idle.gd" id="2_vxdqt"]
 [ext_resource type="PackedScene" uid="uid://ckhff6a3oc3qc" path="res://Components/movement.tscn" id="3_e8k8t"]
 [ext_resource type="PackedScene" uid="uid://bfcf4574nlo23" path="res://Components/animation_component.tscn" id="3_s272i"]
@@ -309,12 +308,8 @@ z_index = 1
 collision_layer = 2
 script = ExtResource("1_qr6cc")
 
-[node name="Information" parent="." node_paths=PackedStringArray("mytype") instance=ExtResource("2_pdkd1")]
-mytype = NodePath("../PlayerType")
+[node name="Information" parent="." instance=ExtResource("2_pdkd1")]
 NAME = "Human"
-
-[node name="PlayerType" type="Node" parent="."]
-script = ExtResource("2_t1150")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 18)
@@ -328,7 +323,6 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1peji")
 animation = &"Idle"
 autoplay = "Idle"
-frame = 1
 
 [node name="AnimationComponent" parent="." instance=ExtResource("3_s272i")]
 

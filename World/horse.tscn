@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://du45vw8vcspc0"]
+[gd_scene load_steps=83 format=3 uid="uid://du45vw8vcspc0"]
 
 [ext_resource type="Script" path="res://World/horse.gd" id="1_5ba1r"]
 [ext_resource type="Texture2D" uid="uid://bmb1vrwg57nmj" path="res://sprites/New/Horses/No_Equipment/Black/Horse_fullcolor_black.png" id="1_kxudm"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://World/MovimientoAiPrueba.gd" id="4_q8ln5"]
 [ext_resource type="Script" path="res://State Machine/States/walk.gd" id="4_ypgp0"]
 [ext_resource type="Script" path="res://State Machine/States/run.gd" id="5_2ue6p"]
+[ext_resource type="PackedScene" uid="uid://c5pknjsbi74p5" path="res://Components/horse_type.tscn" id="5_oto0i"]
 [ext_resource type="PackedScene" uid="uid://cpsdve1xw188s" path="res://Components/gravity.tscn" id="6_0iu07"]
 [ext_resource type="PackedScene" uid="uid://dvv10rvictbhf" path="res://Components/acomodation_component.tscn" id="7_u8j7k"]
 [ext_resource type="PackedScene" uid="uid://cqmisltbdrgxd" path="res://Components/interact.tscn" id="7_uvlgu"]
@@ -585,7 +586,7 @@ states/Trotamiento/position = Vector2(539, 100)
 states/Walk/node = SubResource("AnimationNodeAnimation_12yhb")
 states/Walk/position = Vector2(396, 25)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5qx1y"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_jmlou"), "Idle", "Trotamiento", SubResource("AnimationNodeStateMachineTransition_1rpnp"), "Trotamiento", "Run", SubResource("AnimationNodeStateMachineTransition_1pcdu"), "Trotamiento", "Idle", SubResource("AnimationNodeStateMachineTransition_d3kyo"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_4vp3g"), "Idle", "StartEat", SubResource("AnimationNodeStateMachineTransition_gf0dw"), "StartEat", "FinishEat", SubResource("AnimationNodeStateMachineTransition_xwyum"), "FinishEat", "Idle", SubResource("AnimationNodeStateMachineTransition_hutej"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_d8esd")]
-graph_offset = Vector2(-10, -19)
+graph_offset = Vector2(-38, -56)
 
 [node name="Horse" type="CharacterBody2D"]
 collision_layer = 4
@@ -600,6 +601,8 @@ NAME = "Horse"
 script = ExtResource("4_q8ln5")
 OWNER = NodePath("..")
 
+[node name="HorseNode" parent="." instance=ExtResource("5_oto0i")]
+
 [node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "AnimacionSprite", "information", "idle", "walk", "run") instance=ExtResource("3_nlr2s")]
 OWNER = NodePath("..")
 AnimacionSprite = NodePath("../Visuals/AnimatedSprite2D")
@@ -612,9 +615,9 @@ run = NodePath("../State Machine/Run")
 
 [node name="AcomodationComponent" parent="." instance=ExtResource("7_u8j7k")]
 
-[node name="Interact" parent="." instance=ExtResource("7_uvlgu")]
-
 [node name="Gravity" parent="." instance=ExtResource("6_0iu07")]
+
+[node name="Interact" parent="." instance=ExtResource("7_uvlgu")]
 
 [node name="Visuals" type="Node2D" parent="."]
 
@@ -663,3 +666,8 @@ parameters/conditions/is_run = false
 parameters/conditions/is_trotando = false
 parameters/conditions/is_walk = false
 parameters/conditions/isnot_eat = false
+
+[node name="SafeTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SafeTimer" to="MovimientoAiPrueba" method="_savefunc"]

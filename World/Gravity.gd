@@ -25,5 +25,4 @@ func _physics_process(delta):
 		owner.velocity.y += Gravity * delta
 	if buttonPressed and owner.is_on_floor():
 		owner.velocity.y = JUMP_VELOCITY
-	#print(owner.velocity)
 	owner.move_and_slide()

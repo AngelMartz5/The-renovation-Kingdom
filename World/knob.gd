@@ -8,6 +8,8 @@ var pressing : bool = false
 var eletion : Button = null
 @export var maxLenght : int = 900
 @export var deadZone : int = 5
+@onready var interact_component = $"../../InteractComponent" as INTERACT
+@onready var information = $"../../Information" as INFORMATION
 
 signal electedoption(eletionop : Button)
 
@@ -37,3 +39,5 @@ func _quitarselection():
 func _getsignalselection(yourType:SignalBus.ACTIONBUTTONS):
 	if yourType == SignalBus.ACTIONBUTTONS.EXIT:
 		grandparent._changeControl(false)
+	elif yourType == SignalBus.ACTIONBUTTONS.SPECIAL:
+		interact_component._SpecialactionInteraction(information.Target)

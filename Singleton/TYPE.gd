@@ -1,0 +1,397 @@
+extends Node
+
+enum Types {
+	Animal,
+	Mascota,
+	Montable,
+	Persona,
+	Aldeano,
+	Enemigo,
+	Mago,
+	Objeto,
+	Interactivo
+}
+
+enum ACTIONS {
+	# 🐴 Animales
+	MONTAR,
+	ALIMENTAR,
+	ACARICIAR,
+	ORDENAR,
+	CURAR_ANIMAL,
+	ROBAR_ANIMAL,
+
+	# 🧑‍🌾 NPCs
+	HABLAR,
+	COMERCIAR,
+	ROBAR_NPC,
+	AYUDAR,
+	INTERROGAR,
+	CURAR_PERSONA,
+
+	# 📦 Objetos
+	ABRIR,
+	MOVER,
+	ROMPER,
+	LEER,
+	USAR,
+
+	# 🧌 Enemigos
+	ATACAR,
+	ROBAR_ENEMIGO,
+	INTIMIDAR,
+	HABLAR_ENEMIGO,
+
+	# 🧙 Magia
+	HECHIZAR,
+	INVOCAR,
+	VER_AURA,
+}
+
+@export var acciones = [
+	# === ANIMALES ===
+	{
+		"Name": "Montar",
+		"accion": ACTIONS.MONTAR,
+		"can_do": false,
+		"valid_types": ["animal", "montable"],
+		"requires_condition": true,
+		"condition_key": "domesticado",
+		"condition_value": true,
+		"function_on_success": "montar",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "Este animal no está domesticado."
+	},
+	{
+		"Name": "Alimentar",
+		"accion": ACTIONS.ALIMENTAR,
+		"can_do": false,
+		"valid_types": ["animal", "mascota"],
+		"requires_condition": false,
+		"condition_key": null,
+		"condition_value": null,
+		"function_on_success": "alimentar",
+		"max_uses": 3,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "Ya no tiene hambre."
+	},
+	{
+		"Name": "Acariciar",
+		"accion": ACTIONS.ACARICIAR,
+		"can_do": false,
+		"valid_types": ["animal", "mascota"],
+		"requires_condition": false,
+		"condition_key": null,
+		"condition_value": null,
+		"function_on_success": "acariciar",
+		"max_uses": 5,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "Está harto de tantas caricias."
+	},
+	{
+		"Name": "Ordenar",
+		"accion": ACTIONS.ORDENAR,
+		"can_do": false,
+		"valid_types": ["animal", "mascota"],
+		"requires_condition": true,
+		"condition_key": "entrenado",
+		"condition_value": true,
+		"function_on_success": "ordenar",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "Este ser no entiende tus órdenes."
+	},
+	{
+		"Name": "Curar Animal",
+		"accion": ACTIONS.CURAR_ANIMAL,
+		"can_do": false,
+		"valid_types": ["animal", "mascota"],
+		"requires_condition": true,
+		"condition_key": "salud_baja",
+		"condition_value": true,
+		"function_on_success": "curar_animal",
+		"max_uses": 1,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "Este animal no necesita curación."
+	},
+	{
+		"Name": "Robar Animal",
+		"accion": ACTIONS.ROBAR_ANIMAL,
+		"can_do": false,
+		"valid_types": ["animal"],
+		"requires_condition": false,
+		"condition_key": null,
+		"condition_value": null,
+		"function_on_success": "robar_animal",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No puedes robar este animal."
+	},
+
+	# === NPCs ===
+	{
+		"Name": "Hablar",
+		"accion": ACTIONS.HABLAR,
+		"can_do": false,
+		"valid_types": ["npc", "persona"],
+		"requires_condition": false,
+		"condition_key": null,
+		"condition_value": null,
+		"function_on_success": "hablar",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No quiere hablar contigo."
+	},
+	{
+		"Name": "Comerciar",
+		"accion": ACTIONS.COMERCIAR,
+		"can_do": false,
+		"valid_types": ["npc", "comerciante"],
+		"requires_condition": true,
+		"condition_key": "disponible",
+		"condition_value": true,
+		"function_on_success": "comerciar",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "El comerciante está ocupado."
+	},
+	{
+		"Name": "Robar NPC",
+		"accion": ACTIONS.ROBAR_NPC,
+		"can_do": false,
+		"valid_types": ["npc", "persona"],
+		"requires_condition": false,
+		"condition_key": null,
+		"condition_value": null,
+		"function_on_success": "robar_npc",
+		"max_uses": 1,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No puedes robar a esta persona."
+	},
+	{
+		"Name": "Ayudar",
+		"accion": ACTIONS.AYUDAR,
+		"can_do": false,
+		"valid_types": ["npc", "persona"],
+		"requires_condition": true,
+		"condition_key": "necesita_ayuda",
+		"condition_value": true,
+		"function_on_success": "ayudar",
+		"max_uses": 1,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No necesita tu ayuda."
+	},
+	{
+		"Name": "Interrogar",
+		"accion": ACTIONS.INTERROGAR,
+		"can_do": false,
+		"valid_types": ["npc", "enemigo"],
+		"requires_condition": true,
+		"condition_key": "capturado",
+		"condition_value": true,
+		"function_on_success": "interrogar",
+		"max_uses": 1,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No puedes interrogarlo ahora."
+	},
+	{
+		"Name": "Curar Persona",
+		"accion": ACTIONS.CURAR_PERSONA,
+		"can_do": false,
+		"valid_types": ["persona", "npc"],
+		"requires_condition": true,
+		"condition_key": "herido",
+		"condition_value": true,
+		"function_on_success": "curar_persona",
+		"max_uses": 1,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No necesita curación."
+	},
+
+	# === OBJETOS ===
+	{
+		"Name": "Abrir",
+		"accion": ACTIONS.ABRIR,
+		"can_do": false,
+		"valid_types": ["objeto", "contenedor"],
+		"requires_condition": true,
+		"condition_key": "cerrado",
+		"condition_value": true,
+		"function_on_success": "abrir",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No se puede abrir."
+	},
+	{
+		"Name": "Mover",
+		"accion": ACTIONS.MOVER,
+		"can_do": false,
+		"valid_types": ["objeto"],
+		"requires_condition": false,
+		"condition_key": null,
+		"condition_value": null,
+		"function_on_success": "mover",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No se puede mover."
+	},
+	{
+		"Name": "Romper",
+		"accion": ACTIONS.ROMPER,
+		"can_do": false,
+		"valid_types": ["objeto"],
+		"requires_condition": true,
+		"condition_key": "fragil",
+		"condition_value": true,
+		"function_on_success": "romper",
+		"max_uses": 1,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No puedes romper esto."
+	},
+	{
+		"Name": "Leer",
+		"accion": ACTIONS.LEER,
+		"can_do": false,
+		"valid_types": ["objeto", "libro"],
+		"requires_condition": true,
+		"condition_key": "legible",
+		"condition_value": true,
+		"function_on_success": "leer",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No puedes leer esto."
+	},
+	{
+		"Name": "Usar",
+		"accion": ACTIONS.USAR,
+		"can_do": false,
+		"valid_types": ["objeto"],
+		"requires_condition": true,
+		"condition_key": "usable",
+		"condition_value": true,
+		"function_on_success": "usar",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No se puede usar."
+	},
+
+	# === ENEMIGOS ===
+	{
+		"Name": "Atacar",
+		"accion": ACTIONS.ATACAR,
+		"can_do": false,
+		"valid_types": ["enemigo", "npc"],
+		"requires_condition": false,
+		"condition_key": null,
+		"condition_value": null,
+		"function_on_success": "atacar",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No puedes atacar ahora."
+	},
+	{
+		"Name": "Robar Enemigo",
+		"accion": ACTIONS.ROBAR_ENEMIGO,
+		"can_do": false,
+		"valid_types": ["enemigo"],
+		"requires_condition": false,
+		"condition_key": null,
+		"condition_value": null,
+		"function_on_success": "robar_enemigo",
+		"max_uses": 1,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No puedes robarle."
+	},
+	{
+		"Name": "Intimidar",
+		"accion": ACTIONS.INTIMIDAR,
+		"can_do": false,
+		"valid_types": ["enemigo", "npc"],
+		"requires_condition": true,
+		"condition_key": "miedo",
+		"condition_value": true,
+		"function_on_success": "intimidar",
+		"max_uses": 2,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No le intimidas."
+	},
+	{
+		"Name": "Hablar Enemigo",
+		"accion": ACTIONS.HABLAR_ENEMIGO,
+		"can_do": false,
+		"valid_types": ["enemigo"],
+		"requires_condition": true,
+		"condition_key": "cooperativo",
+		"condition_value": true,
+		"function_on_success": "hablar_enemigo",
+		"max_uses": 1,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No quiere hablar contigo."
+	},
+
+	# === MAGOS ===
+	{
+		"Name": "Hechizar",
+		"accion": ACTIONS.HECHIZAR,
+		"can_do": false,
+		"valid_types": ["enemigo", "persona"],
+		"requires_condition": true,
+		"condition_key": "no_protegido",
+		"condition_value": true,
+		"function_on_success": "hechizar",
+		"max_uses": 3,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "La magia no surte efecto."
+	},
+	{
+		"Name": "Invocar",
+		"accion": ACTIONS.INVOCAR,
+		"can_do": false,
+		"valid_types": ["mago"],
+		"requires_condition": true,
+		"condition_key": "mana_suficiente",
+		"condition_value": true,
+		"function_on_success": "invocar",
+		"max_uses": 3,
+		"uses": 0,
+		"limited_uses": true,
+		"fail_message": "No puedes invocar ahora."
+	},
+	{
+		"Name": "Ver Aura",
+		"accion": ACTIONS.VER_AURA,
+		"can_do": false,
+		"valid_types": ["persona", "enemigo", "animal"],
+		"requires_condition": true,
+		"condition_key": "habilidad_aura",
+		"condition_value": true,
+		"function_on_success": "ver_aura",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No puedes ver su aura."
+	}
+]

@@ -1,4 +1,5 @@
 extends Node
+class_name Acomodation
 
 @onready var information = $"../Information"
  
@@ -28,23 +29,11 @@ func _setAcomodation(otherset : Node2D, meset : Node2D = self.owner, dis : float
 	
 
 func _acomodationFunc():
-	
-	real_position = Me.global_position.direction_to(otherDistance)
-	
-	if real_position.x > 0.099 || real_position.x < -0.099:
-		if real_position.x > 0:
-			information.movement._movimiento(1)
-		else:
-			information.movement._movimiento(-1)
-		
-	else:
-		information.movement._movimiento(0)
+	if Me.information.movement._FromtoTo(Me.global_position,otherDistance):
 		var faceMe : bool = Me.information.DirectionFace
-		print("REAL: "+str(real_position)+ "   My: " + str(Me.information.DirectionFace) + "  TARGET: " + str(other.information.DirectionFace))
 		if faceMe == other.information.DirectionFace:
-			
 			Me.information.DirectionFace = !faceMe
-		print("REAL: "+str(real_position)+ "   My: " + str(Me.information.DirectionFace) + "  TARGET: " + str(other.information.DirectionFace))
+		
 		_quitAcomodation()
 
 func _quitAcomodation():

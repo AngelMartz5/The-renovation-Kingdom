@@ -13,7 +13,6 @@ signal RunEnter()
 
 
 func Enter():
-	print("Enter")
 	OWNER.information.animation_component.SetAnimationPlayer(false,false, true)
 	Movement._enter_run();
 
@@ -26,4 +25,3 @@ func Update(delta:float):
 
 func Exit():
 	Movement.tweenSpeed2.stop();
-	print("SALIENDOSE")

@@ -22,3 +22,7 @@ func _stopEverything(other : Node2D = null, onaction : bool = false):
 
 func _setTarget():
 	information.Target = interact.bodyinteract
+
+func _SpecialactionInteraction(other : Node2D):
+	var resultado = information.mytype.ejecutar_accion(self.owner, information.Target, "Alimentar")
+	print(resultado["mensaje"])
