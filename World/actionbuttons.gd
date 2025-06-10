@@ -33,6 +33,17 @@ func _process(delta):
 	if onTarget:
 		_fillbars(.1)
 
+func _changetype(newType:SignalBus.ACTIONBUTTONS, newName:String = ""):
+	type = newType
+	if newName != "":
+		self.text = newName
+	else:
+		if newType == SignalBus.ACTIONBUTTONS.MORE:
+			self.text = " . . ."
+		else:
+			self.text = SignalBus.ACTIONBUTTONS.find_key(type)
+	
+
 func _resetbar():
 	_cleanbars()
 	_setTimeBars()

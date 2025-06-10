@@ -10,6 +10,7 @@ var eletion : Button = null
 @export var deadZone : int = 5
 @onready var interact_component = $"../../InteractComponent" as INTERACT
 @onready var information = $"../../Information" as INFORMATION
+@onready var control_buttons = $"../ControlButtons"
 
 signal electedoption(eletionop : Button)
 
@@ -21,7 +22,7 @@ func area_entered(body:Node2D):
 	eletion.completedsignal.connect(_getsignalselection)
 
 
-func _process(delta: float) -> void:
+func _input(event):
 	if owner.information.isonAction:
 		var direction = Input.get_vector("left", "right", "up", "down")
 		collision_shape_2d.position = direction * 40
@@ -39,5 +40,7 @@ func _quitarselection():
 func _getsignalselection(yourType:SignalBus.ACTIONBUTTONS):
 	if yourType == SignalBus.ACTIONBUTTONS.EXIT:
 		grandparent._changeControl(false)
-	elif yourType == SignalBus.ACTIONBUTTONS.SPECIAL:
-		interact_component._SpecialactionInteraction(information.Target)
+	elif yourType == SignalBus.ACTIONBUTTONS.SPECIAL:  
+		interact_component._SpecialactionInteraction(TYPE.convertir_texto(TYPE.ACTIONS.find_key(TYPE.ACTIONS.MONTAR)))
+	elif yourType == SignalBus.ACTIONBUTTONS.MORE:
+		control_buttons._changeButtons(interact_component.accionesDisponiblesOther)

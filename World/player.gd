@@ -7,7 +7,7 @@ class_name Player
 @onready var interactavailable = $Interact as InteractZone
 @onready var interact_camera_2d = $InteractCamera2D
 @onready var interact_component = $InteractComponent as INTERACT
-@onready var nameLabel = $Controller/Control/NAME
+@onready var nameLabel = $Controller/NAME
 
 
 func _ready():

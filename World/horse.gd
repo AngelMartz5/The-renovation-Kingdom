@@ -6,4 +6,4 @@ class_name Interactuable
 @export var areyouReady : bool = false
 
 func _ready():
-	pass
+	print(information.get("mytype"))

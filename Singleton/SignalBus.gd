@@ -2,7 +2,7 @@ extends Node
 
 enum ACTIONBUTTONS{
 	EXIT,
-	ACTION,
+	MORE,
 	SPECIAL,
 	DIALOG
 }

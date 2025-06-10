@@ -8,7 +8,6 @@ var NoEqupped : bool = false
 @onready var black_horse = $".."
 
 func _ready():
-	_actionSpecial()
 	if EqupedSmall:
 		_ChangeEquipped(true)
 	elif EqupedBig:
@@ -30,6 +29,3 @@ func _ChangeEquipped(small : bool = false, big : bool = false):
 		NoEqupped = true
 		information.animation_component.especialAnim = ""
 	
-
-func _actionSpecial():
-	print("2")

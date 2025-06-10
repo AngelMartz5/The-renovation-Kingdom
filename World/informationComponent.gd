@@ -23,3 +23,22 @@ var isonAction : bool = false
 var Target : Node2D = null
 # False = Izquierda , True = Derecha
 var DirectionFace : bool = false
+
+# === Condiciones para acciones ===
+
+var domesticado: bool = false
+var entrenado: bool = false
+var salud_baja: bool = true
+var disponible: bool = false
+var necesita_ayuda: bool = false
+var capturado: bool = false
+var herido: bool = false
+var cerrado: bool = true
+var fragil: bool = false
+var legible: bool = false
+var usable: bool = false
+var miedo: bool = false
+var cooperativo: bool = false
+var no_protegido: bool = true
+var mana_suficiente: bool = true
+var habilidad_aura: bool = false
