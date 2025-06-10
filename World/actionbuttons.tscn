@@ -25,6 +25,7 @@ scale = Vector2(0.743293, 0.743293)
 theme_override_fonts/font = ExtResource("1_t6qer")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ena1")
 text = "EXAMPLE"
+text_overrun_behavior = 1
 script = ExtResource("1_0qa7p")
 type = 2
 timeToFinish = 10
@@ -81,3 +82,5 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ig5dv")
 value = 100.0
 fill_mode = 3
 show_percentage = false
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

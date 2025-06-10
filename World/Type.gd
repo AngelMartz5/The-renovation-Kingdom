@@ -85,27 +85,37 @@ func ejecutar_accion(emisor: Node, receptor: Node, nombre_accion: String) -> Dic
 	return resultado
 
 
-func get_acciones_validas_para_tipos(tipos_objetivo: Array[String]) -> Array:
+func get_acciones_validas_para_tipos(tipos_objetivo: Array[String], tipos_emisor: Array[String]) -> Array:
 	var acciones_validas := []
 
 	for accion in TYPE.acciones:
+		var es_valida := false
+
+		# Verificar tipos válidos para el receptor (objetivo)
 		if accion.has("valid_types"):
-			var tipos_validos = accion["valid_types"]
-			
-			# Si hay al menos un tipo compatible, la acción es válida
-			var tiene_tipo_valido := false
 			for tipo in tipos_objetivo:
-				if tipo in tipos_validos:
-					tiene_tipo_valido = true
+				if tipo in accion["valid_types"]:
+					es_valida = true
 					break
-			
-			if tiene_tipo_valido:
-				acciones_validas.append(accion)
 		else:
-			# Si no se especifican tipos válidos, se asume que es válida para todos
+			es_valida = true  # si no hay restricción, es válida para todos
+
+		# Verificar tipos válidos para el emisor
+		if accion.has("allowed_types"):
+			var tipo_valido_emisor := false
+			for tipo in tipos_emisor:
+				if tipo in accion["allowed_types"]:
+					tipo_valido_emisor = true
+					break
+			es_valida = es_valida and tipo_valido_emisor
+		# Si no hay restricción de emisor, no se modifica `es_valida`
+
+		# Agregar la acción si es válida
+		if es_valida:
 			acciones_validas.append(accion)
 
 	return acciones_validas
+
 
 
 func montar(receptor: Node) -> void:

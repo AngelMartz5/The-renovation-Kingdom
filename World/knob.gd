@@ -17,6 +17,7 @@ signal electedoption(eletionop : Button)
 
 func area_entered(body:Node2D):
 	_quitarselection()
+	print(body)
 	eletion = body.owner
 	eletion.onTarget = true
 	eletion.completedsignal.connect(_getsignalselection)
@@ -30,17 +31,17 @@ func _input(event):
 
 func _on_area_exited(area):
 	_quitarselection()
-	eletion = null
 
 func _quitarselection():
 	if eletion != null:
 		eletion._cleanbars()
 		eletion.completedsignal.disconnect(_getsignalselection)
+		eletion = null
 
-func _getsignalselection(yourType:SignalBus.ACTIONBUTTONS):
+func _getsignalselection(yourType:SignalBus.ACTIONBUTTONS,butonSelected : Button):
 	if yourType == SignalBus.ACTIONBUTTONS.EXIT:
 		grandparent._changeControl(false)
 	elif yourType == SignalBus.ACTIONBUTTONS.SPECIAL:  
-		interact_component._SpecialactionInteraction(TYPE.convertir_texto(TYPE.ACTIONS.find_key(TYPE.ACTIONS.MONTAR)))
+		interact_component._SpecialactionInteraction(butonSelected.accionButton["Name"])
 	elif yourType == SignalBus.ACTIONBUTTONS.MORE:
 		control_buttons._changeButtons(interact_component.accionesDisponiblesOther)

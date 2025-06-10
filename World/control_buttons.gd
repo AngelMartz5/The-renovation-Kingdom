@@ -43,22 +43,22 @@ func _visiblebuttons(arrayActions : Array):
 	var actualpos :int = 0
 	var varint : int = 0
 	if arraysize.size() > 5:
-		print(">5")
+		
 		toTo = 4
 		needsmoreButtons = true
 		
 	elif arraysize.size() == 5:
-		print("==5")
+		
 		toTo = 3
 		needsmoreButtons = false
 		
 	elif arraysize.size() > 3:
-		print(">3")
+		
 		toTo = 2
 		needsmoreButtons = true
 		
 	else:
-		print("else<3")
+	
 		if arraysize.size() > 2:
 			toTo = arraysize.size()-1
 		else :
@@ -85,10 +85,11 @@ func actualizar_botones(contenedor: Control, datos: Array, boton_escena: PackedS
 		if i < total_botones:
 			boton = contenedor.get_child(i)
 			boton.show()
+			
 		else:
 			boton = boton_escena.instantiate()
 			contenedor.add_child(boton)
-		boton._changetype(SignalBus.ACTIONBUTTONS.SPECIAL, datos[i]["Name"])
+		boton._changetype(SignalBus.ACTIONBUTTONS.SPECIAL, datos[i]["Name"], datos[i])
 		buttonsVisibles.append(boton)
 		#boton.text = str(datos[i]["Name"])	# o datos[i].nombre si es un objeto
 	# Ocultar botones sobrantes
@@ -141,7 +142,7 @@ func _posicionarButtons(button_array: Array) -> void:
 	if count == 0:
 		return
 	var posCenter : Vector2 = controller.position + Vector2(-7,119)
-	var distance := Vector2(65, 45)  # Distancia desde el centro en X y Y
+	var distance := Vector2(65, 49)  # Distancia desde el centro en X y Y
 
 	match count:
 		1:

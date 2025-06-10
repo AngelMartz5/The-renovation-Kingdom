@@ -5,17 +5,20 @@ extends Button
 @export var type = SignalBus.ACTIONBUTTONS.EXIT
 @export var timeToFinish : int = 30
 
+
 @onready var first = $First
 @onready var second = $Second
 @onready var third = $Third
 @onready var fourth = $Fourth
 @onready var controller = $"../../Controller"
+@onready var collision_shape_2d = $Area2D/CollisionShape2D as CollisionShape2D
 
 var pogressbars : Array[ProgressBar] 
 var onTarget : bool = false
 var currentbar : int = 0
+var accionButton = []
 
-signal completedsignal(yourType:SignalBus.ACTIONBUTTONS)
+signal completedsignal(yourType:SignalBus.ACTIONBUTTONS,butonSelected : Button)
 
 
 func _ready():
@@ -33,15 +36,17 @@ func _process(delta):
 	if onTarget:
 		_fillbars(.1)
 
-func _changetype(newType:SignalBus.ACTIONBUTTONS, newName:String = ""):
+func _changetype(newType:SignalBus.ACTIONBUTTONS, newName:String = "", accionself = []):
 	type = newType
 	if newName != "":
+		accionButton = accionself
 		self.text = newName
 	else:
 		if newType == SignalBus.ACTIONBUTTONS.MORE:
 			self.text = " . . ."
 		else:
 			self.text = SignalBus.ACTIONBUTTONS.find_key(type)
+			
 	
 
 func _resetbar():
@@ -67,7 +72,8 @@ func _fillbars(time : float):
 			pogressbars[currentbar].value +=time
 	else:
 		onTarget = false
-		completedsignal.emit(type)
+		completedsignal.emit(type,self)
+	
 
 func _pressButton():
 	onTarget = true
@@ -77,3 +83,14 @@ func _unpressButton():
 	onTarget = false
 	completedsignal.disconnect(controller._getsignalselection)
 	_resetbar()
+
+
+func _on_visibility_changed():
+	if self.visible == true:
+		self.disabled = false
+		if collision_shape_2d != null:
+			collision_shape_2d.disabled = false
+	else:
+		self.disabled = true
+		if collision_shape_2d != null:
+			collision_shape_2d.disabled = true
