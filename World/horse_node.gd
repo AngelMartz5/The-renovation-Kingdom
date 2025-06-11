@@ -14,6 +14,9 @@ func _ready():
 		_ChangeEquipped(false,true)
 	else:
 		_ChangeEquipped()
+	
+	# Provisional mientras tenga un metodo de domesticacion
+	information.domesticado =  true
 
 func _ChangeEquipped(small : bool = false, big : bool = false):
 	EqupedSmall = false

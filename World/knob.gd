@@ -17,7 +17,6 @@ signal electedoption(eletionop : Button)
 
 func area_entered(body:Node2D):
 	_quitarselection()
-	print(body)
 	eletion = body.owner
 	eletion.onTarget = true
 	eletion.completedsignal.connect(_getsignalselection)

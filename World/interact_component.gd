@@ -36,5 +36,5 @@ func _SpecialactionInteraction(Action : String,other : Node2D = information.Targ
 func _getAccionesDisponibles():
 	var other = information.Target.information.mytype
 	accionesDisponiblesOther = other.get_acciones_validas_para_tipos(other.tipos, self.information.mytype.tipos)
-	for i in accionesDisponiblesOther.size():
-		print(accionesDisponiblesOther[i]["Name"])
+	#for i in accionesDisponiblesOther.size():
+	#	print(accionesDisponiblesOther[i]["Name"])
