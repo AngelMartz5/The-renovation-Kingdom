@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/world_1.gd" id="1_3n1kb"]
 [ext_resource type="Texture2D" uid="uid://bdh5jhn4kvyql" path="res://Parallax/bgcolor.png" id="1_gqqqj"]
-[ext_resource type="PackedScene" uid="uid://bv0bdohtqxfbg" path="res://World/Player.tscn" id="1_j86up"]
+[ext_resource type="PackedScene" uid="uid://bv0bdohtqxfbg" path="res://World/Characters/Prototype1.tscn" id="1_j86up"]
 [ext_resource type="Texture2D" uid="uid://da8kbfq2v38q2" path="res://Parallax/Tlayer1.png" id="2_uup5w"]
 [ext_resource type="Texture2D" uid="uid://c2korkgf2q73f" path="res://Parallax/Tlayer2.png" id="3_5kfct"]
 [ext_resource type="Texture2D" uid="uid://c06n7xb58f0k5" path="res://Parallax/Tlayer3.png" id="4_sm1xc"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_lti3m"]
 [ext_resource type="Script" path="res://World/inputs.gd" id="10_8fyw8"]
 [ext_resource type="Texture2D" uid="uid://d2u04bm6bhavx" path="res://Parallax/Textures&trees.png" id="10_cti7c"]
-[ext_resource type="PackedScene" uid="uid://barndec4t8l23" path="res://World/Blackhorse.tscn" id="11_vaiyt"]
+[ext_resource type="PackedScene" uid="uid://cpjrflf5pnt1v" path="res://World/Characters/NutShellPlayer.tscn" id="13_j21oy"]
 
 [sub_resource type="Resource" id="Resource_cx33n"]
 script = ExtResource("8_lhifl")
@@ -303,7 +303,7 @@ sources/1 = SubResource("TileSetAtlasSource_w1gfh")
 
 [node name="World1" type="Node2D"]
 script = ExtResource("1_3n1kb")
-timeToStart = 0.1
+timeToStart = 1.0
 
 [node name="ParallaxEffect" type="Node2D" parent="."]
 
@@ -359,22 +359,18 @@ position = Vector2(146.5, 61)
 scale = Vector2(6.54583, 5.15625)
 texture = ExtResource("4_sm1xc")
 
-[node name="Player" parent="." instance=ExtResource("1_j86up")]
-position = Vector2(632, -159)
-
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(632, -159)
 script = ExtResource("7_eqoay")
 priority = 5
 follow_mode = 2
-follow_target = NodePath("../Player")
+follow_target = NodePath("../NutShellPlayer")
 zoom = Vector2(1.3, 1.3)
 tween_resource = SubResource("Resource_cx33n")
 
+[node name="NutShellPlayer" parent="." instance=ExtResource("13_j21oy")]
+
 [node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
-position = Vector2(632, -159)
 zoom = Vector2(1.3, 1.3)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
@@ -401,5 +397,5 @@ script = ExtResource("10_8fyw8")
 wait_time = 6.823
 one_shot = true
 
-[node name="BlackHorse" parent="." instance=ExtResource("11_vaiyt")]
-position = Vector2(-596, 109)
+[node name="Protitype1" parent="." instance=ExtResource("1_j86up")]
+position = Vector2(-211, 160)

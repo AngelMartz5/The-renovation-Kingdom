@@ -48,6 +48,9 @@ enum ACTIONS {
 	VER_AURA,
 }
 
+# Necesito cambiar los types porque ahora tienen que solo funcionar como acciones
+# Porque implementare un sistema de ataque y quiero que aparesca las interacciones solo para interactuar con otros de buena o mala manera
+
 @export var acciones = [
 	# === ANIMALES ===
 	{

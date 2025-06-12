@@ -8,3 +8,5 @@ enum ACTIONBUTTONS{
 }
 
 var isallcompleted : bool = false
+
+signal isCompleted()

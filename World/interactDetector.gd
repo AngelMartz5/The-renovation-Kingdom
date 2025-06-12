@@ -2,6 +2,7 @@ extends Area2D
 class_name InteractZone
 
 @onready var interact_component = $"../InteractComponent" as INTERACT
+@onready var information = $"../Information"
 
 var bodyinteract : Node2D = null
 
@@ -12,12 +13,13 @@ func _ready() -> void:
 	body_exited.connect(Item_exited)
 
 func Item_entered(body:Node2D):
-	if body is Interactuable:
+	print(body)
+	if body.information.mytype != null:
 		bodyinteract = body
 		somebodyentered.emit(bodyinteract)
 	
 
 func Item_exited(body:Node2D):
-	if body is Interactuable:
+	if body.information.mytype != null:
 		bodyinteract = null
 		somebodyentered.emit(bodyinteract)

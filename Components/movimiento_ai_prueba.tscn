@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ragmrlcr6yr"]
+
+[ext_resource type="Script" path="res://World/MovimientoAiPrueba.gd" id="1_v6mlm"]
+
+[node name="MovimientoAiPrueba" type="Node" node_paths=PackedStringArray("OWNER")]
+script = ExtResource("1_v6mlm")
+OWNER = NodePath("")

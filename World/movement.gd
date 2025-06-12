@@ -126,7 +126,7 @@ func _voltear(bol : bool = false):
 func _FromtoTo(from : Vector2, To : Vector2) -> bool:
 	var positionToGo = from.direction_to(To)
 	
-	if positionToGo.x > 0.099 || positionToGo.x < -0.099:
+	if positionToGo.x > 0.1 || positionToGo.x < -0.1:
 		if positionToGo.x > 0:
 			_movimiento(1)
 		else:

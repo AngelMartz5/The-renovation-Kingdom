@@ -4,7 +4,7 @@ var buttonsChildren : Array = []
 @onready var controller = $"../Controller"
 @onready var contenedor = $"."
 @onready var boton_escena = preload("res://World/actionbuttons.tscn")
-@onready var interact_component = $"../../InteractComponent" as INTERACT
+
 
 var needsmoreButtons : bool = false
 var visibleactions = []
@@ -16,7 +16,6 @@ signal OrganizeButtons()
 func _ready():
 	buttonsChildren = obtener_botones()
 	OrganizeButtons.connect(_organizeButtons)
-	interact_component.setTarget.connect(_aftersetTarget)
 
 func _changeButtons(datos: Array):
 	var datosSize = datos.size()
@@ -30,7 +29,7 @@ func _changeButtons(datos: Array):
 	_aftersetTarget()
 
 func _aftersetTarget():
-	_visiblebuttons(interact_component.accionesDisponiblesOther)
+	_visiblebuttons(owner.Myinformation.interact_component.accionesDisponiblesOther)
 	actualizar_botones(self,visibleactions,boton_escena, needsmoreButtons)
 
 func _organizeButtons():

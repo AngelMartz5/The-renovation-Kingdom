@@ -10,6 +10,8 @@ class_name INFORMATION
 @onready var interact = $"../Interact" as InteractZone
 @onready var collision_shape_2d = $"../CollisionShape2D" as CollisionShape2D
 @onready var acomodation_component = $"../AcomodationComponent" as Acomodation
+@onready var movimiento_ai_prueba = $"../MovimientoAiPrueba" as MovementAI
+@onready var animated_sprite_2d = $"../Visuals/AnimatedSprite2D" as AnimatedSprite2D
 
 @export var velocidad_inicial : int = 150
 @export var size : float = 3

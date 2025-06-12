@@ -1,0 +1,116 @@
+[gd_scene load_steps=13 format=3 uid="uid://cpjrflf5pnt1v"]
+
+[ext_resource type="Script" path="res://World/Characters/nut_shell_player.gd" id="1_m16c3"]
+[ext_resource type="PackedScene" uid="uid://barndec4t8l23" path="res://World/Characters/Blackhorse.tscn" id="2_14j5i"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_xxwx6"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_yoa41"]
+[ext_resource type="FontFile" uid="uid://dvvs3esplqrf1" path="res://Fonts/PressStart2P.ttf" id="4_cqsjp"]
+[ext_resource type="FontVariation" uid="uid://bo43k6uev61x6" path="res://Fonts/PressStart.tres" id="5_54pra"]
+[ext_resource type="Script" path="res://World/control_buttons.gd" id="6_yqgmi"]
+[ext_resource type="PackedScene" uid="uid://dnvkki5xsomg2" path="res://World/actionbuttons.tscn" id="7_kyov7"]
+[ext_resource type="Script" path="res://World/knob.gd" id="8_fn3n8"]
+[ext_resource type="Texture2D" uid="uid://brj3k36hppri" path="res://sprites/joyknobpng.png" id="9_frsqa"]
+
+[sub_resource type="Resource" id="Resource_urkd1"]
+script = ExtResource("3_yoa41")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cukll"]
+
+[node name="NutShellPlayer" type="Node2D" node_paths=PackedStringArray("ActualPlayer")]
+script = ExtResource("1_m16c3")
+ActualPlayer = NodePath("BlackHorse")
+
+[node name="BlackHorse" parent="." instance=ExtResource("2_14j5i")]
+
+[node name="InteractCamera2D" type="Node2D" parent="."]
+top_level = true
+script = ExtResource("2_xxwx6")
+follow_mode = 1
+zoom = Vector2(1.1, 1.1)
+tween_resource = SubResource("Resource_urkd1")
+
+[node name="TextActions" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextActions"]
+layout_mode = 0
+offset_left = -74.0
+offset_top = -127.0
+offset_right = 85.0
+offset_bottom = -15.0
+theme_override_constants/separation = 15
+
+[node name="PRESS" type="Label" parent="TextActions/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cqsjp")
+theme_override_font_sizes/font_size = 20
+text = "Press:"
+horizontal_alignment = 1
+
+[node name="ACTION" type="Label" parent="TextActions/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_54pra")
+theme_override_font_sizes/font_size = 29
+text = "B"
+horizontal_alignment = 1
+
+[node name="Controller" type="Node2D" parent="."]
+position = Vector2(0, 47)
+
+[node name="NAME" type="Label" parent="Controller"]
+offset_left = -33.0
+offset_top = -275.0
+offset_right = 79.0
+offset_bottom = -252.0
+theme_override_fonts/font = ExtResource("4_cqsjp")
+text = "EXAMPLE"
+vertical_alignment = 1
+
+[node name="ControlButtons" type="Control" parent="Controller"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -32.0
+offset_top = -130.0
+offset_right = 37.0
+offset_bottom = -112.0
+script = ExtResource("6_yqgmi")
+
+[node name="actionbuttons3" parent="Controller/ControlButtons" instance=ExtResource("7_kyov7")]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -102.0
+offset_right = 170.0
+offset_bottom = -70.0
+type = 1
+
+[node name="actionbuttons2" parent="Controller/ControlButtons" instance=ExtResource("7_kyov7")]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -14.0
+offset_right = 171.0
+offset_bottom = 18.0
+type = 0
+
+[node name="Controller" type="Area2D" parent="Controller" node_paths=PackedStringArray("grandparent", "parent")]
+position = Vector2(11, -169)
+collision_layer = 0
+collision_mask = 128
+collision_priority = 2.0
+script = ExtResource("8_fn3n8")
+grandparent = NodePath("../..")
+parent = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Controller"]
+shape = SubResource("RectangleShape2D_cukll")
+
+[node name="Knob" type="Sprite2D" parent="Controller/Controller/CollisionShape2D"]
+position = Vector2(0.279999, 0.780001)
+scale = Vector2(0.0142917, 0.0148125)
+texture = ExtResource("9_frsqa")
+
+[connection signal="area_entered" from="Controller/Controller" to="Controller/Controller" method="area_entered"]
+[connection signal="area_exited" from="Controller/Controller" to="Controller/Controller" method="_on_area_exited"]

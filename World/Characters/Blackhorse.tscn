@@ -1,10 +1,10 @@
-[gd_scene load_steps=213 format=3 uid="uid://barndec4t8l23"]
+[gd_scene load_steps=214 format=3 uid="uid://barndec4t8l23"]
 
 [ext_resource type="Script" path="res://World/horse.gd" id="1_dsi8g"]
 [ext_resource type="PackedScene" uid="uid://biva725uc0onb" path="res://Components/information.tscn" id="2_iv8x6"]
 [ext_resource type="PackedScene" uid="uid://bfcf4574nlo23" path="res://Components/animation_component.tscn" id="3_t1tjp"]
-[ext_resource type="Script" path="res://World/MovimientoAiPrueba.gd" id="4_1ijpe"]
 [ext_resource type="PackedScene" uid="uid://ckhff6a3oc3qc" path="res://Components/movement.tscn" id="5_lkrrb"]
+[ext_resource type="PackedScene" uid="uid://c0ragmrlcr6yr" path="res://Components/movimiento_ai_prueba.tscn" id="5_y7voa"]
 [ext_resource type="PackedScene" uid="uid://bt1kdu7d8mrg5" path="res://Components/interact_component.tscn" id="6_ihmdc"]
 [ext_resource type="PackedScene" uid="uid://c5pknjsbi74p5" path="res://Components/horse_type.tscn" id="6_kruph"]
 [ext_resource type="PackedScene" uid="uid://dvv10rvictbhf" path="res://Components/acomodation_component.tscn" id="7_1gmk6"]
@@ -17,6 +17,10 @@
 [ext_resource type="Script" path="res://State Machine/States/idle.gd" id="12_qs0c5"]
 [ext_resource type="Script" path="res://State Machine/States/walk.gd" id="13_tajfa"]
 [ext_resource type="Script" path="res://State Machine/States/run.gd" id="14_vj5cp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_voasw"]
+resource_local_to_scene = true
+size = Vector2(183, 143)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wys8"]
 atlas = ExtResource("10_qcabo")
@@ -973,7 +977,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7rp8v"]
-size = Vector2(52.3333, 36)
+size = Vector2(52, 36)
 
 [sub_resource type="Animation" id="Animation_6k4j6"]
 length = 0.428571
@@ -1730,15 +1734,12 @@ mytype = NodePath("../HorseType")
 NAME = "Horse"
 
 [node name="HorseType" parent="." instance=ExtResource("6_kruph")]
-EqupedBig = true
 needSomething = true
 errorMesaje = "Necesitas domesticarlo"
 
 [node name="AnimationComponent" parent="." instance=ExtResource("3_t1tjp")]
 
-[node name="MovimientoAiPrueba" type="Node" parent="." node_paths=PackedStringArray("OWNER")]
-script = ExtResource("4_1ijpe")
-OWNER = NodePath("..")
+[node name="MovimientoAiPrueba" parent="." instance=ExtResource("5_y7voa")]
 
 [node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "AnimacionSprite", "information", "idle", "walk", "run") instance=ExtResource("5_lkrrb")]
 OWNER = NodePath("..")
@@ -1753,6 +1754,10 @@ run = NodePath("../State Machine/Run")
 [node name="AcomodationComponent" parent="." instance=ExtResource("7_1gmk6")]
 
 [node name="Interact" parent="." instance=ExtResource("8_wun6r")]
+
+[node name="InteractCollision" parent="Interact" index="0"]
+position = Vector2(2.5, 23.5)
+shape = SubResource("RectangleShape2D_voasw")
 
 [node name="Gravity" parent="." instance=ExtResource("9_nunl7")]
 
@@ -1805,3 +1810,5 @@ parameters/conditions/is_run = false
 parameters/conditions/is_trotando = false
 parameters/conditions/is_walk = false
 parameters/conditions/isnot_eat = false
+
+[editable path="Interact"]

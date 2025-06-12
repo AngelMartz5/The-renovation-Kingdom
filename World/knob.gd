@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var grandparent : Player
+@export var grandparent : Node2D
 @export var parent: Node2D
 @onready var collision_shape_2d = $CollisionShape2D
 
@@ -8,8 +8,6 @@ var pressing : bool = false
 var eletion : Button = null
 @export var maxLenght : int = 900
 @export var deadZone : int = 5
-@onready var interact_component = $"../../InteractComponent" as INTERACT
-@onready var information = $"../../Information" as INFORMATION
 @onready var control_buttons = $"../ControlButtons"
 
 signal electedoption(eletionop : Button)
@@ -23,9 +21,10 @@ func area_entered(body:Node2D):
 
 
 func _input(event):
-	if owner.information.isonAction:
-		var direction = Input.get_vector("left", "right", "up", "down")
-		collision_shape_2d.position = direction * 40
+	if SignalBus.isallcompleted:
+		if owner.Myinformation.isonAction:
+			var direction = Input.get_vector("left", "right", "up", "down")
+			collision_shape_2d.position = direction * 40
 
 
 func _on_area_exited(area):
@@ -41,6 +40,6 @@ func _getsignalselection(yourType:SignalBus.ACTIONBUTTONS,butonSelected : Button
 	if yourType == SignalBus.ACTIONBUTTONS.EXIT:
 		grandparent._changeControl(false)
 	elif yourType == SignalBus.ACTIONBUTTONS.SPECIAL:  
-		interact_component._SpecialactionInteraction(butonSelected.accionButton["Name"])
+		owner.myinteract_component._SpecialactionInteraction(butonSelected.accionButton["Name"])
 	elif yourType == SignalBus.ACTIONBUTTONS.MORE:
-		control_buttons._changeButtons(interact_component.accionesDisponiblesOther)
+		control_buttons._changeButtons(owner.myinteract_component.accionesDisponiblesOther)
