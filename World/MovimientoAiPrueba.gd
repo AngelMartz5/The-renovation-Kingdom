@@ -4,7 +4,7 @@ class_name MovementAI
 @onready var movement = $"../Movement"
 @onready var information = $"../Information"
 
-var controllPlayer : bool = false
+@export var controllPlayer : bool = false
 var movedir = 1;
 
 
@@ -17,8 +17,12 @@ func _process(delta):
 				movement._movimiento(movedir);
 		else:
 			if !information.isonAction and !information.acomodation_component.needsAcomodation:
-				var mov = int(Input.is_action_pressed("right"))- int(Input.is_action_pressed("left"))
-				information.movement._movimiento(mov);
+				var movx = int(Input.is_action_pressed("right"))- int(Input.is_action_pressed("left"))
+				var movy : int = 0
 				information.movement.butonRun = true if Input.is_action_pressed("Run") else false
-				information.gravity.buttonPressed = true if Input.is_action_just_pressed("jump") else false
+				if !information.gravity.fly:
+					information.gravity.buttonPressed = true if Input.is_action_just_pressed("jump") else false
+				else:
+					movy = int(Input.is_action_pressed("down"))- int(Input.is_action_pressed("up"))
+				information.movement._movimiento(movx,movy);
 		

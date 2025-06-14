@@ -5,6 +5,8 @@ const JUMP_VELOCITY = -400.0
 @onready var idle = $"../State Machine/Idle"
 var buttonPressed : bool = false
 
+@export var fly: bool = false
+
 func _ready():
 	idle.IdleInit.connect(_desplazamiento)
 	
@@ -21,8 +23,11 @@ func _detenimiento(Number : int ):
 	owner.velocity.x = Number
 
 func _physics_process(delta):
-	if !owner.is_on_floor():
-		owner.velocity.y += Gravity * delta
-	if buttonPressed and owner.is_on_floor():
-		owner.velocity.y = JUMP_VELOCITY
+	if !fly:
+		if !owner.is_on_floor():
+			owner.velocity.y += Gravity * delta
+		if buttonPressed and owner.is_on_floor():
+			owner.velocity.y = JUMP_VELOCITY
+	else:
+		owner.velocity.y = 0
 	owner.move_and_slide()

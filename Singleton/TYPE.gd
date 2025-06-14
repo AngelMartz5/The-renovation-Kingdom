@@ -9,7 +9,8 @@ enum Types {
 	enemigo,
 	mago,
 	objeto,
-	interactivo
+	interactivo,
+	fantasma
 }
 
 enum ACTIONS {
@@ -46,6 +47,10 @@ enum ACTIONS {
 	HECHIZAR,
 	INVOCAR,
 	VER_AURA,
+	
+	#GHOST
+	POSEER,
+	DEPOSEER,
 }
 
 # Necesito cambiar los types porque ahora tienen que solo funcionar como acciones
@@ -420,7 +425,38 @@ enum ACTIONS {
 		"uses": 0,
 		"limited_uses": false,
 		"fail_message": "No puedes ver su aura."
-	}
+	},
+	# ----- GHOSTS ----------
+	{
+		"Name": "Poseer",
+		"accion": ACTIONS.POSEER,
+		"can_do": false,
+		"valid_types": ["animal", "montable", "enemigo", "persona", "npc", "aldeano"],
+		"allowed_types": ["fantasma"],
+		"requires_condition": true,
+		"condition_key": "Poseido",
+		"condition_value": false,
+		"function_on_success": "Poseer",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "Esto no se puede poseer."
+	},
+	{
+		"Name": "Desposeer",
+		"accion": ACTIONS.DEPOSEER,
+		"can_do": false,
+		"valid_types": ["animal", "montable", "enemigo", "persona", "npc", "aldeano"],
+		"allowed_types": ["fantasma"],
+		"requires_condition": true,
+		"condition_key": "Desposeido",
+		"condition_value": false,
+		"function_on_success": "Desposeer",
+		"max_uses": 0,
+		"uses": 0,
+		"limited_uses": false,
+		"fail_message": "No estas poseido"
+	},
 ]
 
 func convertir_texto(texto: String) -> String:

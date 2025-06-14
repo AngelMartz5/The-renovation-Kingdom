@@ -10,3 +10,7 @@ enum ACTIONBUTTONS{
 var isallcompleted : bool = false
 
 signal isCompleted()
+signal SetEverything()
+
+var Actualworld : Node2D
+var NutShellPlayer : Node2D

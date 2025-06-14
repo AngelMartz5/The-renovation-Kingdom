@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" path="res://World/movement.gd" id="1_4uin1"]
 
-[node name="Movement" type="Node" node_paths=PackedStringArray("OWNER", "AnimacionSprite", "idle", "walk", "run")]
+[node name="Movement" type="Node"]
 script = ExtResource("1_4uin1")
-OWNER = NodePath("")
-AnimacionSprite = NodePath("")
 NameState = ""
-idle = NodePath("")
-walk = NodePath("")
-run = NodePath("")

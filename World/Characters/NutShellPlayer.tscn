@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://cpjrflf5pnt1v"]
 
 [ext_resource type="Script" path="res://World/Characters/nut_shell_player.gd" id="1_m16c3"]
-[ext_resource type="PackedScene" uid="uid://barndec4t8l23" path="res://World/Characters/Blackhorse.tscn" id="2_14j5i"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_xxwx6"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_yoa41"]
 [ext_resource type="FontFile" uid="uid://dvvs3esplqrf1" path="res://Fonts/PressStart2P.ttf" id="4_cqsjp"]
 [ext_resource type="FontVariation" uid="uid://bo43k6uev61x6" path="res://Fonts/PressStart.tres" id="5_54pra"]
 [ext_resource type="Script" path="res://World/control_buttons.gd" id="6_yqgmi"]
+[ext_resource type="PackedScene" uid="uid://6jsp2jrf3vaw" path="res://World/Characters/life_and_stamina_bar.tscn" id="7_fqkur"]
 [ext_resource type="PackedScene" uid="uid://dnvkki5xsomg2" path="res://World/actionbuttons.tscn" id="7_kyov7"]
 [ext_resource type="Script" path="res://World/knob.gd" id="8_fn3n8"]
 [ext_resource type="Texture2D" uid="uid://brj3k36hppri" path="res://sprites/joyknobpng.png" id="9_frsqa"]
@@ -19,11 +19,8 @@ ease = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cukll"]
 
-[node name="NutShellPlayer" type="Node2D" node_paths=PackedStringArray("ActualPlayer")]
+[node name="NutShellPlayer" type="Node2D"]
 script = ExtResource("1_m16c3")
-ActualPlayer = NodePath("BlackHorse")
-
-[node name="BlackHorse" parent="." instance=ExtResource("2_14j5i")]
 
 [node name="InteractCamera2D" type="Node2D" parent="."]
 top_level = true
@@ -34,7 +31,10 @@ tween_resource = SubResource("Resource_urkd1")
 
 [node name="TextActions" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextActions"]
 layout_mode = 0
@@ -57,6 +57,13 @@ theme_override_fonts/font = ExtResource("5_54pra")
 theme_override_font_sizes/font_size = 29
 text = "B"
 horizontal_alignment = 1
+
+[node name="LifeAndStaminaBar" parent="." instance=ExtResource("7_fqkur")]
+offset_left = -6.0
+offset_top = -71.0
+offset_right = -6.0
+offset_bottom = -71.0
+scale = Vector2(1.99546, 1.99546)
 
 [node name="Controller" type="Node2D" parent="."]
 position = Vector2(0, 47)

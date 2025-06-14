@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfxkbt3qbtk8y"]
+[gd_scene load_steps=18 format=3 uid="uid://cfxkbt3qbtk8y"]
 
 [ext_resource type="Script" path="res://World/world_1.gd" id="1_3n1kb"]
 [ext_resource type="Texture2D" uid="uid://bdh5jhn4kvyql" path="res://Parallax/bgcolor.png" id="1_gqqqj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_lti3m"]
 [ext_resource type="Script" path="res://World/inputs.gd" id="10_8fyw8"]
 [ext_resource type="Texture2D" uid="uid://d2u04bm6bhavx" path="res://Parallax/Textures&trees.png" id="10_cti7c"]
+[ext_resource type="PackedScene" uid="uid://dt5ql3ofoxyj" path="res://World/Characters/Bow/leaf_elf.tscn" id="13_hmnp8"]
 [ext_resource type="PackedScene" uid="uid://cpjrflf5pnt1v" path="res://World/Characters/NutShellPlayer.tscn" id="13_j21oy"]
 
 [sub_resource type="Resource" id="Resource_cx33n"]
@@ -303,7 +304,7 @@ sources/1 = SubResource("TileSetAtlasSource_w1gfh")
 
 [node name="World1" type="Node2D"]
 script = ExtResource("1_3n1kb")
-timeToStart = 1.0
+timeToStart = 0.5
 
 [node name="ParallaxEffect" type="Node2D" parent="."]
 
@@ -398,4 +399,7 @@ wait_time = 6.823
 one_shot = true
 
 [node name="Protitype1" parent="." instance=ExtResource("1_j86up")]
-position = Vector2(-211, 160)
+position = Vector2(411, -38)
+
+[node name="LeafElf" parent="." instance=ExtResource("13_hmnp8")]
+position = Vector2(-561, 52)

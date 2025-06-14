@@ -21,7 +21,7 @@ func area_entered(body:Node2D):
 
 
 func _input(event):
-	if SignalBus.isallcompleted:
+	if SignalBus.isallcompleted and owner.myinteract != null:
 		if owner.Myinformation.isonAction:
 			var direction = Input.get_vector("left", "right", "up", "down")
 			collision_shape_2d.position = direction * 40

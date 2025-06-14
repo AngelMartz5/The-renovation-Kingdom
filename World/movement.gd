@@ -21,11 +21,6 @@ var enTween2 : bool = false
 @export var information : INFORMATION
 
 
-@export_group("States")
-@export var idle:Idle
-@export var walk:Walk
-@export var run:Run
-
 var Correr : bool = false
 
 
@@ -53,7 +48,6 @@ func _process(delta):
 		if enTween:
 			tweenDeseleracion.stop()
 			enTween = false
-		walk.Transitioned.emit(self, "Idle")
 	else:
 		if OWNER.is_on_wall():
 			wallColliding = true
@@ -69,6 +63,8 @@ func _physics_process(delta):
 	if !information.isonAction:
 		if !enTween and !enTween2:
 			OWNER.velocity.x = movement.x * Velocidad_Actual 
+			if movement.y != 0.0:
+				OWNER.velocity.y = movement.y * Velocidad_Actual 
 		else:
 			OWNER.velocity.x = velocidadCorrecta
 		_convertidor(movement.x)
@@ -123,15 +119,18 @@ func _voltear(bol : bool = false):
 		information.visuals.scale.x = -1
 	
 
-func _FromtoTo(from : Vector2, To : Vector2) -> bool:
+func _FromtoTo(from : Vector2, To : Vector2,me : Node2D ) -> bool:
 	var positionToGo = from.direction_to(To)
-	
-	if positionToGo.x > 0.1 || positionToGo.x < -0.1:
+	print("%s  De Hacia:   %s" % [str(from), str(To)] + "  Ademas " + str(positionToGo))
+	if me.is_on_wall():
+		print("COLISIONANDO")
+		_movimiento(0)
+		return true
+	elif positionToGo.x > 0.1 || positionToGo.x < -0.1:
 		if positionToGo.x > 0:
-			_movimiento(1)
+			_movimiento(0.1)
 		else:
-			_movimiento(-1)
-		
+			_movimiento(-0.1)
 	else:
 		_movimiento(0)
 		return true

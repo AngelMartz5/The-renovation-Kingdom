@@ -7,10 +7,16 @@ signal IdleInit
 @export var movement : Node
 @onready var information = $"../../Information"
 
+func _ready():
+	if OWNER == null:
+		OWNER = owner.owner
+	if movement == null:
+		movement = information.movement
+
 func Enter():
 	IdleInit.emit()
 	information.animation_component.SetAnimationPlayer()
 
 func Update(delta:float):
-	if movement.movement.x != 0:
+	if movement.movement.x != 0 and !movement.wallColliding:
 		Transitioned.emit(self, "Walk")

@@ -10,7 +10,7 @@ var distance: float = 0
 var otherDistance : Vector2 = Vector2.ZERO
 var real_position : Vector2 = Vector2.ZERO
 
-func _process(delta):
+func _physics_process(delta):
 	if needsAcomodation:
 		_acomodationFunc()
 
@@ -29,7 +29,7 @@ func _setAcomodation(otherset : Node2D, meset : Node2D = self.owner, dis : float
 	
 
 func _acomodationFunc():
-	if Me.information.movement._FromtoTo(Me.global_position,otherDistance):
+	if Me.information.movement._FromtoTo(Me.global_position,otherDistance, Me):
 		var faceMe : bool = Me.information.DirectionFace
 		if faceMe == other.information.DirectionFace:
 			Me.information.DirectionFace = !faceMe

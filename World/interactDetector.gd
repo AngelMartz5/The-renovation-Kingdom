@@ -7,6 +7,7 @@ class_name InteractZone
 var bodyinteract : Node2D = null
 
 signal somebodyentered(body:Node2D)
+signal somebodyExited(body:Node2D)
 
 func _ready() -> void:
 	body_entered.connect(Item_entered)
@@ -23,3 +24,4 @@ func Item_exited(body:Node2D):
 	if body.information.mytype != null:
 		bodyinteract = null
 		somebodyentered.emit(bodyinteract)
+		somebodyExited.emit(body)

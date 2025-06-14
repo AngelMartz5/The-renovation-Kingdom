@@ -7,6 +7,9 @@ const CANDOIT = "Can do it?"
 @export var needSomething : bool = false
 @export var errorMesaje : String = ""
 @export var tipos : Array[String] = ["animal", "montable"]  # Ejemplo para caballo
+@onready var information = $"../Information" as INFORMATION
+
+var poseidoPor : PackedScene
 
 func _CheckAction() -> String:
 	if !needSomething:
@@ -56,7 +59,15 @@ func ejecutar_accion(emisor: Node, receptor: Node, nombre_accion: String) -> Dic
 			# Verificar condición si es necesaria
 			if accion["requires_condition"]:
 				var valor = receptor.information.get(accion["condition_key"])
-				if valor != accion["condition_value"]:
+				var conditionValue = accion["condition_key"] # puede ser true, false, 0, "Mage", etc.
+				print(conditionValue)
+				if conditionValue == "Poseido" || conditionValue == "Desposeido":
+					var selfValue = emisor.information.get(accion["condition_key"])
+					if selfValue != accion["condition_value"]:
+						resultado["mensaje"] = accion["fail_message"]
+						return resultado
+					
+				elif valor != accion["condition_value"]:
 					resultado["mensaje"] = accion["fail_message"]
 					return resultado
 
@@ -68,7 +79,7 @@ func ejecutar_accion(emisor: Node, receptor: Node, nombre_accion: String) -> Dic
 			# Llamar a la función de éxito si existe en el emisor
 			var metodo = accion["function_on_success"]
 			if emisor.information.mytype.has_method(metodo):
-				emisor.information.mytype.call(metodo, receptor)
+				emisor.information.mytype.call(metodo, receptor.information.mytype)
 				resultado["exito"] = true
 				resultado["mensaje"] = "Acción ejecutada correctamente."
 
@@ -116,7 +127,31 @@ func get_acciones_validas_para_tipos(tipos_objetivo: Array[String], tipos_emisor
 
 	return acciones_validas
 
+func Desposeer(receptor: Node) -> void:
+	if self.information.movimiento_ai_prueba.controllPlayer:
+		self.tipos.erase("fantasma")
+		self.information.Poseido = false
+		SignalBus.Actualworld.add_child(self.owner)
+		var newGhost = SignalBus.NutShellPlayer._createPlayer(self.poseidoPor)
+		self.information.movimiento_ai_prueba.controllPlayer = false
+		receptor.information.movimiento_ai_prueba.controllPlayer = false
+		newGhost.global_position = self.owner.global_position
+		receptor.information.isonAction = false
+		self.information.Poseido = false
+		self.information.Desposeido = true
+		self.information.isonAction = false
+		print("Desposeido")
 
+func Poseer(receptor: Node) -> void:
+	receptor.poseidoPor = information.myScene
+	if self.information.movimiento_ai_prueba.controllPlayer:
+		receptor.tipos.append("fantasma")
+		receptor.information.Poseido = true
+		SignalBus.NutShellPlayer.ActualPlayer = receptor.owner
+		receptor.information.movimiento_ai_prueba.controllPlayer = true
+		receptor.information.Poseido = true
+		receptor.information.Desposeido = false
+	self.owner.queue_free()
 
 func montar(receptor: Node) -> void:
 	print("%s intentó montar a %s" % [self.name, receptor.name])

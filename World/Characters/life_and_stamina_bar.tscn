@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://6jsp2jrf3vaw"]
+
+[ext_resource type="Script" path="res://World/Characters/life_bar.gd" id="1_grsim"]
+[ext_resource type="Texture2D" uid="uid://cg8qxml0cgjk3" path="res://sprites/cross.png" id="1_koioi"]
+[ext_resource type="Texture2D" uid="uid://civtm0362h0vr" path="res://sprites/BarOver1.png" id="2_mhrhh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwb6g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dldrl"]
+bg_color = Color(0, 0.72549, 0.498039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpiac"]
+bg_color = Color(0.336121, 0, 0.126582, 1)
+
+[node name="LifeBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -2.0
+offset_right = -4.0
+offset_bottom = -2.0
+scale = Vector2(10, 10)
+pivot_offset = Vector2(5.72, 0)
+script = ExtResource("1_grsim")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 12
+texture_filter = 1
+position = Vector2(17, 21)
+texture = ExtResource("1_koioi")
+
+[node name="LifeProgressBar" type="ProgressBar" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = -30.3
+offset_top = -3.03
+offset_right = -13.49
+offset_bottom = -1.935
+scale = Vector2(3.76383, 4.5936)
+theme_override_styles/background = SubResource("StyleBoxEmpty_wwb6g")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dldrl")
+value = 50.0
+show_percentage = false
+
+[node name="DamageProgressBar" type="ProgressBar" parent="LifeProgressBar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.367311
+offset_top = 0.0734616
+offset_right = -0.367311
+offset_bottom = 0.0734617
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_wwb6g")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hpiac")
+value = 100.0
+show_percentage = false
+
+[node name="BarSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1.5, -46.5)
+texture = ExtResource("2_mhrhh")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
