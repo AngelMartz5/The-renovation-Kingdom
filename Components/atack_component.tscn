@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgngxxrsrqt1f"]
+
+[ext_resource type="Script" path="res://World/atack_component.gd" id="1_njhdn"]
+
+[node name="AtackComponent" type="Node"]
+script = ExtResource("1_njhdn")
+cooldown = 5.0
+AnimationTO = 6
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ImunityTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_finishTimerCooldown"]
+[connection signal="timeout" from="ImunityTimer" to="." method="_finishInmunityTimer"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bv0bdohtqxfbg"]
+[gd_scene load_steps=49 format=3 uid="uid://bv0bdohtqxfbg"]
 
 [ext_resource type="Script" path="res://World/player.gd" id="1_qr6cc"]
 [ext_resource type="Texture2D" uid="uid://bbteh837urvhm" path="res://sprites/New/Character_base.png" id="2_mp6ak"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bfcf4574nlo23" path="res://Components/animation_component.tscn" id="3_s272i"]
 [ext_resource type="PackedScene" uid="uid://c0ragmrlcr6yr" path="res://Components/movimiento_ai_prueba.tscn" id="5_531u7"]
 [ext_resource type="PackedScene" uid="uid://dbxq42o6juqjg" path="res://Components/health_component.tscn" id="6_eq08e"]
+[ext_resource type="PackedScene" uid="uid://dgngxxrsrqt1f" path="res://Components/atack_component.tscn" id="7_ua7or"]
 [ext_resource type="PackedScene" uid="uid://cpsdve1xw188s" path="res://Components/gravity.tscn" id="8_tlyg2"]
 [ext_resource type="PackedScene" uid="uid://bt1kdu7d8mrg5" path="res://Components/interact_component.tscn" id="10_o4xxc"]
 [ext_resource type="PackedScene" uid="uid://cyvln6lyme8u2" path="res://Components/state_machine.tscn" id="12_8fiop"]
@@ -293,7 +294,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [node name="Protitype1" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(1, 0)
-collision_layer = 4
+collision_layer = 20
 collision_priority = 2.0
 script = ExtResource("1_qr6cc")
 
@@ -306,10 +307,13 @@ script = ExtResource("2_t1150")
 tipos = Array[String](["aldeano"])
 
 [node name="AnimationComponent" parent="." instance=ExtResource("3_s272i")]
+hasAnimations = Array[bool]([true, true, false, false, false, false])
 
 [node name="MovimientoAiPrueba" parent="." instance=ExtResource("5_531u7")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_eq08e")]
+
+[node name="AtackComponent" parent="." instance=ExtResource("7_ua7or")]
 
 [node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "AnimacionSprite", "information") instance=ExtResource("3_e8k8t")]
 OWNER = NodePath("..")

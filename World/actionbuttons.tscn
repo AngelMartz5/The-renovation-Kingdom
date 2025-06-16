@@ -28,7 +28,7 @@ text = "EXAMPLE"
 text_overrun_behavior = 1
 script = ExtResource("1_0qa7p")
 type = 2
-timeToFinish = 10
+timeToFinish = 5
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(9.41755, -1.34536)

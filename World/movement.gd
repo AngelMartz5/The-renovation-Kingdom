@@ -14,6 +14,7 @@ var tweenSpeed2 : Tween
 var velocidadCorrecta : float = 0 
 var VelocidadMaxima : float = 600
 var enTween2 : bool = false
+var fixTemporaly : Array[Vector2]
 
 @export var OWNER : CharacterBody2D
 @export var AnimacionSprite : AnimatedSprite2D
@@ -22,7 +23,7 @@ var enTween2 : bool = false
 
 
 var Correr : bool = false
-
+@export var isOnIdle : bool = true
 
 
 func _ready():
@@ -69,7 +70,7 @@ func _physics_process(delta):
 			OWNER.velocity.x = velocidadCorrecta
 		_convertidor(movement.x)
 	else:
-		if !information.acomodation_component.needsAcomodation:
+		if !information.acomodation_component.needsAcomodation :
 			movement = Vector2.ZERO
 		else:
 			OWNER.velocity.x = movement.x * Velocidad_Actual 
@@ -119,20 +120,42 @@ func _voltear(bol : bool = false):
 		information.visuals.scale.x = -1
 	
 
-func _FromtoTo(from : Vector2, To : Vector2,me : Node2D ) -> bool:
+func _FromtoTo(from : Vector2, To : Vector2, me : Node2D) -> bool:
 	var positionToGo = from.direction_to(To)
-	print("%s  De Hacia:   %s" % [str(from), str(To)] + "  Ademas " + str(positionToGo))
+	var distancia = from.distance_to(To)
+
+	# Agregado de control para cortar el bucle si está suficientemente cerca
+	if distancia <= 1.0:
+		_movimiento(0)
+		print("¡Destino alcanzado!")
+		return true
+
+	# Movimiento según dirección X (puedes adaptarlo a 2D completo si quieres)
 	if me.is_on_wall():
 		print("COLISIONANDO")
 		_movimiento(0)
 		return true
-	elif positionToGo.x > 0.1 || positionToGo.x < -0.1:
-		if positionToGo.x > 0:
-			_movimiento(0.1)
-		else:
-			_movimiento(-0.1)
+	elif positionToGo.x > 0.2:
+		_movimiento(0.2)
+	elif positionToGo.x < -0.2:
+		_movimiento(-0.2)
 	else:
 		_movimiento(0)
 		return true
-	
+
+	print("%s  De Hacia:   %s" % [str(from), str(To)] + "  Ademas " + str(positionToGo)+ "  AUN HAY : " + str(distancia))
+	return false
+
+
+func isInInfinite(fix : Array[Vector2])-> bool:
+	if fix.size() > 4:
+		var i : int = 0
+		var lastNumber : Vector2 = Vector2.ZERO
+		for fixes in fix:
+			if i >= 3:
+				if (i % 2) == 0:
+					pass
+				else:
+					pass
+			i += 1
 	return false

@@ -4,7 +4,7 @@ class_name Run
 signal RunEnter()
 
 
-@onready var information = $"../../Information"
+
 
 
 @export var OWNER : CharacterBody2D
@@ -18,15 +18,19 @@ func _ready():
 
 
 func Enter():
-	OWNER.information.animation_component.SetAnimationPlayer(false,false, true)
+	information.animation_component.SetAnimationPlayer(AnimationTO)
 	movement._enter_run();
 
 func Update(delta:float):
-
 	if movement.movement.x == 0:
 		Transitioned.emit(self, "Idle")
 	if !movement.Correr:
 		Transitioned.emit(self, "Walk")
+	if information.stateAtack:
+		if information.atack_component.attack():
+			Transitioned.emit(self, "Atack")
+	if information.gotDamage:
+		Transitioned.emit(self, "GetDamage")
 
 func Exit():
 	movement.tweenSpeed2.stop();

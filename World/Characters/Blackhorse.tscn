@@ -1,4 +1,4 @@
-[gd_scene load_steps=215 format=3 uid="uid://barndec4t8l23"]
+[gd_scene load_steps=213 format=3 uid="uid://barndec4t8l23"]
 
 [ext_resource type="Script" path="res://World/horse.gd" id="1_dsi8g"]
 [ext_resource type="PackedScene" uid="uid://biva725uc0onb" path="res://Components/information.tscn" id="2_iv8x6"]
@@ -9,15 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://c5pknjsbi74p5" path="res://Components/horse_type.tscn" id="6_kruph"]
 [ext_resource type="PackedScene" uid="uid://dbxq42o6juqjg" path="res://Components/health_component.tscn" id="6_uj3ec"]
 [ext_resource type="PackedScene" uid="uid://dvv10rvictbhf" path="res://Components/acomodation_component.tscn" id="7_1gmk6"]
+[ext_resource type="PackedScene" uid="uid://dgngxxrsrqt1f" path="res://Components/atack_component.tscn" id="7_fsxmg"]
 [ext_resource type="PackedScene" uid="uid://cqmisltbdrgxd" path="res://Components/interact.tscn" id="8_wun6r"]
 [ext_resource type="PackedScene" uid="uid://cpsdve1xw188s" path="res://Components/gravity.tscn" id="9_nunl7"]
+[ext_resource type="PackedScene" uid="uid://cyvln6lyme8u2" path="res://Components/state_machine.tscn" id="10_j4t4a"]
 [ext_resource type="Texture2D" uid="uid://bmb1vrwg57nmj" path="res://sprites/New/Horses/No_Equipment/Black/Horse_fullcolor_black.png" id="10_qcabo"]
-[ext_resource type="Script" path="res://State Machine/state_machine.gd" id="11_jpvrv"]
 [ext_resource type="Texture2D" uid="uid://dr7nres2u4bgr" path="res://sprites/HORSES/Horse_Sprite_Asset/Horses_equipped_bigsaddle/Horse_fullcolor_black_blacksaddled_bigsaddle.png" id="11_v7p8u"]
 [ext_resource type="Texture2D" uid="uid://b8vmast8g7scv" path="res://sprites/HORSES/Horse_Sprite_Asset/Horses_equipped_smallsaddle/Horse_fullcolor_black_blacksaddled_smallsaddle.png" id="12_cpf8p"]
-[ext_resource type="Script" path="res://State Machine/States/idle.gd" id="12_qs0c5"]
-[ext_resource type="Script" path="res://State Machine/States/walk.gd" id="13_tajfa"]
-[ext_resource type="Script" path="res://State Machine/States/run.gd" id="14_vj5cp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_voasw"]
 resource_local_to_scene = true
@@ -1724,10 +1722,11 @@ states/WalkEB/position = Vector2(505, -262)
 states/WalkES/node = SubResource("AnimationNodeAnimation_g3sa8")
 states/WalkES/position = Vector2(505, 328)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_jmlou"), "Idle", "Trotamiento", SubResource("AnimationNodeStateMachineTransition_1rpnp"), "Trotamiento", "Run", SubResource("AnimationNodeStateMachineTransition_1pcdu"), "Trotamiento", "Idle", SubResource("AnimationNodeStateMachineTransition_d3kyo"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_4vp3g"), "Idle", "StartEat", SubResource("AnimationNodeStateMachineTransition_gf0dw"), "StartEat", "FinishEat", SubResource("AnimationNodeStateMachineTransition_xwyum"), "FinishEat", "Idle", SubResource("AnimationNodeStateMachineTransition_hutej"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_d8esd"), "Idle", "IdleEB", SubResource("AnimationNodeStateMachineTransition_cm1ej"), "IdleEB", "Idle", SubResource("AnimationNodeStateMachineTransition_i0iuo"), "IdleEB", "WalkEB", SubResource("AnimationNodeStateMachineTransition_ynllr"), "WalkEB", "IdleEB", SubResource("AnimationNodeStateMachineTransition_odmq0"), "IdleEB", "StartEatEB", SubResource("AnimationNodeStateMachineTransition_iry87"), "IdleEB", "TrotamientoEB", SubResource("AnimationNodeStateMachineTransition_p4tqv"), "TrotamientoEB", "IdleEB", SubResource("AnimationNodeStateMachineTransition_rd6dn"), "TrotamientoEB", "RunEB", SubResource("AnimationNodeStateMachineTransition_0esiw"), "RunEB", "IdleEB", SubResource("AnimationNodeStateMachineTransition_ce3g6"), "StartEatEB", "FinishEatEB", SubResource("AnimationNodeStateMachineTransition_rk6mk"), "FinishEatEB", "IdleEB", SubResource("AnimationNodeStateMachineTransition_eejgs"), "FinishEatES", "IdleES", SubResource("AnimationNodeStateMachineTransition_uyv44"), "IdleES", "WalkES", SubResource("AnimationNodeStateMachineTransition_f7fh7"), "WalkES", "IdleES", SubResource("AnimationNodeStateMachineTransition_ltvx0"), "Idle", "IdleES", SubResource("AnimationNodeStateMachineTransition_fskmi"), "IdleES", "Idle", SubResource("AnimationNodeStateMachineTransition_h1m15"), "IdleES", "StartEatES", SubResource("AnimationNodeStateMachineTransition_iqdxn"), "StartEatES", "FinishEatES", SubResource("AnimationNodeStateMachineTransition_7s4me"), "IdleES", "TrotamientoES", SubResource("AnimationNodeStateMachineTransition_084v1"), "TrotamientoES", "IdleES", SubResource("AnimationNodeStateMachineTransition_gi2wu"), "RunES", "IdleES", SubResource("AnimationNodeStateMachineTransition_i35fr"), "TrotamientoES", "RunES", SubResource("AnimationNodeStateMachineTransition_qc0ds"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_riqq3")]
-graph_offset = Vector2(-59, -32)
+graph_offset = Vector2(190.5, -11)
 
 [node name="BlackHorse" type="CharacterBody2D"]
-collision_layer = 4
+position = Vector2(2, 49)
+collision_layer = 20
 script = ExtResource("1_dsi8g")
 
 [node name="Information" parent="." node_paths=PackedStringArray("mytype") instance=ExtResource("2_iv8x6")]
@@ -1735,24 +1734,26 @@ mytype = NodePath("../HorseType")
 NAME = "Horse"
 
 [node name="HorseType" parent="." instance=ExtResource("6_kruph")]
-EqupedSmall = null
-EqupedBig = null
 needSomething = true
 errorMesaje = "Necesitas domesticarlo"
-tipos = null
-
-[node name="AnimationComponent" parent="." instance=ExtResource("3_t1tjp")]
-
-[node name="MovimientoAiPrueba" parent="." instance=ExtResource("5_y7voa")]
-
-[node name="HealthComponent" parent="." instance=ExtResource("6_uj3ec")]
 
 [node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "AnimacionSprite", "information") instance=ExtResource("5_lkrrb")]
 OWNER = NodePath("..")
 AnimacionSprite = NodePath("../Visuals/AnimatedSprite2D")
 information = NodePath("../Information")
 
+[node name="AnimationComponent" parent="." instance=ExtResource("3_t1tjp")]
+hasAnimations = Array[bool]([true, true, false, false, false, false])
+
+[node name="MovimientoAiPrueba" parent="." instance=ExtResource("5_y7voa")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("6_uj3ec")]
+
+[node name="AtackComponent" parent="." instance=ExtResource("7_fsxmg")]
+
 [node name="InteractComponent" parent="." instance=ExtResource("6_ihmdc")]
+
+[node name="State Machine" parent="." instance=ExtResource("10_j4t4a")]
 
 [node name="AcomodationComponent" parent="." instance=ExtResource("7_1gmk6")]
 
@@ -1771,29 +1772,12 @@ texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_etxrd")
 animation = &"Idle"
-frame = 3
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6.5, 42)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_7rp8v")
-
-[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("11_jpvrv")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="State Machine" node_paths=PackedStringArray("OWNER", "movement")]
-script = ExtResource("12_qs0c5")
-OWNER = NodePath("../..")
-movement = NodePath("../../Movement")
-
-[node name="Walk" type="Node" parent="State Machine" node_paths=PackedStringArray("OWNER")]
-script = ExtResource("13_tajfa")
-OWNER = NodePath("../..")
-
-[node name="Run" type="Node" parent="State Machine" node_paths=PackedStringArray("OWNER")]
-script = ExtResource("14_vj5cp")
-OWNER = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -5,18 +5,18 @@ class_name MovementAI
 @onready var information = $"../Information"
 
 @export var controllPlayer : bool = false
-var movedir = 1;
+@export var DirectionIaTGo: Vector2 = Vector2.RIGHT
 
 
 func _process(delta):
 	if SignalBus.isallcompleted:
-		if !controllPlayer:
-			if !information.isonAction and !information.acomodation_component.needsAcomodation:
+		if !information.isonAction and !information.acomodation_component.needsAcomodation and !_necesitaPararseParaAtacar():
+			if !controllPlayer:
 				if movement.wallColliding:
-					movedir = -1
-				movement._movimiento(movedir);
-		else:
-			if !information.isonAction and !information.acomodation_component.needsAcomodation:
+					DirectionIaTGo.x *= -1
+				movement._movimiento(DirectionIaTGo.x);
+			else:
+				
 				var movx = int(Input.is_action_pressed("right"))- int(Input.is_action_pressed("left"))
 				var movy : int = 0
 				information.movement.butonRun = true if Input.is_action_pressed("Run") else false
@@ -26,3 +26,10 @@ func _process(delta):
 					movy = int(Input.is_action_pressed("down"))- int(Input.is_action_pressed("up"))
 				information.movement._movimiento(movx,movy);
 		
+
+func _necesitaPararseParaAtacar()-> bool:
+	var resultado : bool = false
+	if information.seParaParaAtacar:
+		if information.atacking:
+			resultado = true
+	return resultado

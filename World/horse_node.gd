@@ -1,6 +1,5 @@
 extends Type
 
-@onready var information = $"../Information" as INFORMATION
 
 @export var EqupedSmall : bool = false
 @export var EqupedBig : bool = false

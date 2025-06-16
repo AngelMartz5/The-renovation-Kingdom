@@ -13,10 +13,11 @@ var myinteract_component : INTERACT : set = _set_myinteract_component
 @onready var nameLabel = $Controller/NAME
 @onready var control_buttons = $Controller/ControlButtons
 @onready var phantom_camera_2d = $"../PhantomCamera2D"
-@onready var life_and_stamina_bar = $LifeAndStaminaBar
+@onready var life_and_stamina_bar = $LifeAndStaminaBar as LifeBar
 
 @export var ghost_escena : PackedScene = preload("res://World/Characters/Ghost.tscn")
 
+@export var AnimationTO : AnimationComponent.animationsInHasAnimations
 
 func _ready():
 	SignalBus.SetEverything.connect(needesAfterReady)
@@ -39,19 +40,23 @@ func needesAfterReady():
 	
 
 func _set_Player(player : Node2D):
+	if player != null:
+		life_and_stamina_bar.OWNER = null
 	ActualPlayer = player
 	Myinformation = player.information
 	interact_camera_2d.follow_target = player
+	life_and_stamina_bar.OWNER = player
 	phantom_camera_2d.follow_target = player
 	
 func _set_myInformation(info : INFORMATION):
 	if Myinformation != null:
-		Myinformation.health_component.ChangeLife.disconnect(update_health_display)
+		life_and_stamina_bar._setHealthComponent(Myinformation.health_component, false)
 		Myinformation.interact_component.somebodyAvalible = false
 	myinteract = info.interact
 	Myinformation = info
+	life_and_stamina_bar._setHealthComponent(Myinformation.health_component)
 	myinteract_component = info.interact_component
-	info.health_component.ChangeLife.connect(update_health_display)
+	
 	_changeControl(false)
 	info.movimiento_ai_prueba.controllPlayer = true
 
@@ -69,18 +74,21 @@ func _set_myinteract_component(new : INTERACT):
 
 func _process(delta):
 	if SignalBus.isallcompleted and myinteract != null:
-		life_and_stamina_bar.position = ActualPlayer.global_position
+		life_and_stamina_bar.global_position = ActualPlayer.global_position
 
 
 func _input(event):
 	if SignalBus.isallcompleted and myinteract != null:
+		if event.is_action_pressed("Atack"):
+			Myinformation.stateAtack = true
+		
 		if event.is_action_pressed("Action") and Myinformation.interact_component.somebodyAvalible:
 			Myinformation.interact_component._setTarget()
 			_changeControl(true)
 		
 		if event.is_action_type():
-			controller.position = ActualPlayer.global_position
-			text_actions.position = ActualPlayer.global_position
+			controller.global_position = ActualPlayer.global_position
+			text_actions.global_position = ActualPlayer.global_position
 
 
 func _somebodyentered(body:Node2D = null):
@@ -111,8 +119,7 @@ func _changeControl(bol:bool):
 func _showTxtButtons(bol : bool = false):
 	text_actions.visible = bol
 
-func update_health_display():
-	life_and_stamina_bar.life_progress_bar.value = Myinformation.health_component.get_health_percent()
+
 
 func _createPlayer(scene : PackedScene) -> Node2D:
 	var NewPlayer = scene.instantiate()

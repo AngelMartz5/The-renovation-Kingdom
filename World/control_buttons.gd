@@ -24,8 +24,6 @@ func _changeButtons(datos: Array):
 		actualButton = 0;
 	else:
 		actualButton += anteriorButton
-	print("actualButton: "+str(actualButton))
-	print("anteriorButton: "+str(anteriorButton))
 	_aftersetTarget()
 
 func _aftersetTarget():

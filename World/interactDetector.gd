@@ -14,7 +14,6 @@ func _ready() -> void:
 	body_exited.connect(Item_exited)
 
 func Item_entered(body:Node2D):
-	print(body)
 	if body.information.mytype != null:
 		bodyinteract = body
 		somebodyentered.emit(bodyinteract)

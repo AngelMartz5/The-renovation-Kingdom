@@ -13,8 +13,10 @@ func _ready():
 
 func _bodyentered(body:Node2D):
 	if body != null:
-		somebodyAvalible = true
-		_setTarget()
+		if body != owner:
+			print(body)
+			somebodyAvalible = true
+			_setTarget()
 		
 	else:
 		somebodyAvalible = false

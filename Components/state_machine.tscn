@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyvln6lyme8u2"]
+[gd_scene load_steps=7 format=3 uid="uid://cyvln6lyme8u2"]
 
 [ext_resource type="Script" path="res://State Machine/state_machine.gd" id="1_v2r8a"]
 [ext_resource type="Script" path="res://State Machine/States/idle.gd" id="2_24gp8"]
 [ext_resource type="Script" path="res://State Machine/States/walk.gd" id="3_nx7su"]
 [ext_resource type="Script" path="res://State Machine/States/run.gd" id="4_sd82f"]
+[ext_resource type="Script" path="res://State Machine/States/atack.gd" id="5_e223w"]
+[ext_resource type="Script" path="res://State Machine/States/get_damage.gd" id="6_g50ov"]
 
 [node name="State Machine" type="Node" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_v2r8a")
@@ -14,6 +16,16 @@ script = ExtResource("2_24gp8")
 
 [node name="Walk" type="Node" parent="."]
 script = ExtResource("3_nx7su")
+AnimationTO = 1
 
 [node name="Run" type="Node" parent="."]
 script = ExtResource("4_sd82f")
+AnimationTO = 2
+
+[node name="Atack" type="Node" parent="."]
+script = ExtResource("5_e223w")
+AnimationTO = 6
+
+[node name="GetDamage" type="Node" parent="."]
+script = ExtResource("6_g50ov")
+AnimationTO = 5

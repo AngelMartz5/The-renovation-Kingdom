@@ -13,6 +13,8 @@ class_name INFORMATION
 @onready var acomodation_component = $"../AcomodationComponent" as Acomodation
 @onready var movimiento_ai_prueba = $"../MovimientoAiPrueba" as MovementAI
 @onready var animated_sprite_2d = $"../Visuals/AnimatedSprite2D" as AnimatedSprite2D
+@onready var atack_component = $"../AtackComponent" as AttackComponent
+@onready var area_atack = $"../Visuals/AreaAtack" as AreaAttack
 
 @export var velocidad_inicial : int = 150
 @export var life : int = 100;
@@ -21,13 +23,17 @@ class_name INFORMATION
 @export var NAME : String = ""
 @export var isPeaceful : bool = true
 
+var seParaParaAtacar : bool = false
 # Target es necesario especificarlo en cada personaje
+var atacking : bool = false
 var myScene : PackedScene
 var isonAction : bool = false
 var Target : Node2D = null
 # False = Izquierda , True = Derecha
 var DirectionFace : bool = false
 
+var gotDamage : bool = false
+var stateAtack : bool = false
 # === Condiciones para acciones ===
 
 var domesticado: bool = false

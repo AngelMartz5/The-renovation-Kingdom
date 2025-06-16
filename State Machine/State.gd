@@ -3,6 +3,8 @@ extends Node
 
 class_name State
 
+@export var AnimationTO : AnimationComponent.animationsInHasAnimations
+@onready var information = $"../../Information" as INFORMATION
 signal Transitioned
 
 var Completed : bool = true

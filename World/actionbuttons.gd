@@ -13,6 +13,8 @@ extends Button
 @onready var controller = $"../../Controller"
 @onready var collision_shape_2d = $Area2D/CollisionShape2D as CollisionShape2D
 
+
+
 var pogressbars : Array[ProgressBar] 
 var onTarget : bool = false
 var currentbar : int = 0

@@ -5,3 +5,4 @@ extends CharacterBody2D
 
 func _ready():
 	information.myScene = GHOST
+	print("APARECI")

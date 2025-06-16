@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ctk5m5cfxrdlx"]
+[gd_scene load_steps=57 format=3 uid="uid://ctk5m5cfxrdlx"]
 
 [ext_resource type="Script" path="res://World/Characters/ghost.gd" id="1_3dufj"]
 [ext_resource type="PackedScene" uid="uid://biva725uc0onb" path="res://Components/information.tscn" id="2_k2lwn"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfcf4574nlo23" path="res://Components/animation_component.tscn" id="5_g46yy"]
 [ext_resource type="PackedScene" uid="uid://dbxq42o6juqjg" path="res://Components/health_component.tscn" id="6_bgtip"]
 [ext_resource type="PackedScene" uid="uid://cpsdve1xw188s" path="res://Components/gravity.tscn" id="7_w0ydb"]
+[ext_resource type="PackedScene" uid="uid://dgngxxrsrqt1f" path="res://Components/atack_component.tscn" id="7_ylr4v"]
 [ext_resource type="PackedScene" uid="uid://cqmisltbdrgxd" path="res://Components/interact.tscn" id="8_urpv3"]
 [ext_resource type="PackedScene" uid="uid://bt1kdu7d8mrg5" path="res://Components/interact_component.tscn" id="9_w6s3x"]
 [ext_resource type="PackedScene" uid="uid://ckhff6a3oc3qc" path="res://Components/movement.tscn" id="10_kc46s"]
@@ -277,7 +278,7 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 [node name="Ghost" type="CharacterBody2D"]
 z_index = 5
 scale = Vector2(3, 3)
-collision_layer = 4
+collision_layer = 20
 script = ExtResource("1_3dufj")
 
 [node name="Information" parent="." node_paths=PackedStringArray("mytype") instance=ExtResource("2_k2lwn")]
@@ -293,8 +294,11 @@ script = ExtResource("4_e37nf")
 tipos = Array[String](["fantasma"])
 
 [node name="AnimationComponent" parent="." instance=ExtResource("5_g46yy")]
+hasAnimations = Array[bool]([true, true, false, false, false, false, false])
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_bgtip")]
+
+[node name="AtackComponent" parent="." instance=ExtResource("7_ylr4v")]
 
 [node name="Interact" parent="." instance=ExtResource("8_urpv3")]
 position = Vector2(0, -12.6667)
@@ -331,6 +335,7 @@ position = Vector2(-2.33333, 18)
 scale = Vector2(-0.412, 0.411)
 sprite_frames = SubResource("SpriteFrames_5gk6u")
 animation = &"Idle"
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")
