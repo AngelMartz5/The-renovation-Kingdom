@@ -294,7 +294,6 @@ script = ExtResource("4_e37nf")
 tipos = Array[String](["fantasma"])
 
 [node name="AnimationComponent" parent="." instance=ExtResource("5_g46yy")]
-hasAnimations = Array[bool]([true, true, false, false, false, false, false])
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_bgtip")]
 

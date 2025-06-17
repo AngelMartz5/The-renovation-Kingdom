@@ -54,8 +54,6 @@ func _finishInmunityTimer():
 
 func attack()->bool:
 	var pudoAtacar = false
-	if !animation_component.hasAnimations[AnimationTO]:
-		return pudoAtacar
 	
 	if cooldownFinished:
 		pudoAtacar = true

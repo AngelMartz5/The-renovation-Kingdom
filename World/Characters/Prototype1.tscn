@@ -307,7 +307,6 @@ script = ExtResource("2_t1150")
 tipos = Array[String](["aldeano"])
 
 [node name="AnimationComponent" parent="." instance=ExtResource("3_s272i")]
-hasAnimations = Array[bool]([true, true, false, false, false, false])
 
 [node name="MovimientoAiPrueba" parent="." instance=ExtResource("5_531u7")]
 

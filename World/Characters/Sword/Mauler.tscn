@@ -600,7 +600,6 @@ scale = Vector2(1.00347, 1)
 sprite_frames = SubResource("SpriteFrames_5gk6u")
 animation = &"Idle"
 autoplay = "Idle"
-frame = 1
 
 [node name="AreaAtack" parent="Visuals" instance=ExtResource("15_3u0x0")]
 
