@@ -17,11 +17,11 @@ func Enter():
 	
 
 func Update(delta:float):
-	if movement.movement.x == 0 || movement.wallColliding:
-		Transitioned.emit(self, "Idle")
 	if information.stateAtack:
 		if information.atack_component.attack():
 			Transitioned.emit(self, "Atack")
+	if movement.movement.x == 0 || movement.wallColliding:
+		Transitioned.emit(self, "Idle")
 	if movement.Correr: 
 		
 		Transitioned.emit(self, "Run")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coxhkqdcm0rdy"]
+
+[ext_resource type="Script" path="res://stamine_meter.gd" id="1_o2i36"]
+
+[node name="Stamine-Meter" type="Node2D"]
+script = ExtResource("1_o2i36")

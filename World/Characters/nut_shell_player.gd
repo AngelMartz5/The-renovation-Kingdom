@@ -14,6 +14,7 @@ var myinteract_component : INTERACT : set = _set_myinteract_component
 @onready var control_buttons = $Controller/ControlButtons
 @onready var phantom_camera_2d = $"../PhantomCamera2D"
 @onready var life_and_stamina_bar = $LifeAndStaminaBar as LifeBar
+@onready var stamine_meter = $"Stamine-Meter" as StamineCircle
 
 @export var ghost_escena : PackedScene = preload("res://World/Characters/Ghost.tscn")
 
@@ -43,6 +44,7 @@ func _set_Player(player : Node2D):
 	if player != null:
 		life_and_stamina_bar.OWNER = null
 	ActualPlayer = player
+	stamine_meter.OWNER = player
 	Myinformation = player.information
 	interact_camera_2d.follow_target = player
 	life_and_stamina_bar.OWNER = player
@@ -55,6 +57,7 @@ func _set_myInformation(info : INFORMATION):
 	myinteract = info.interact
 	Myinformation = info
 	life_and_stamina_bar._setHealthComponent(Myinformation.health_component)
+	
 	myinteract_component = info.interact_component
 	
 	_changeControl(false)
@@ -79,16 +82,20 @@ func _process(delta):
 
 func _input(event):
 	if SignalBus.isallcompleted and myinteract != null:
-		if event.is_action_pressed("Atack"):
-			Myinformation.stateAtack = true
+		if!Myinformation.isonAction:
+			if event.is_action_pressed("ChangeAttack") :
+				Myinformation.atack_component._nextAttack()
+			if event.is_action_pressed("Atack") :
+				Myinformation.stateAtack = true
+				
 		
 		if event.is_action_pressed("Action") and Myinformation.interact_component.somebodyAvalible:
 			Myinformation.interact_component._setTarget()
 			_changeControl(true)
 		
-		if event.is_action_type():
-			controller.global_position = ActualPlayer.global_position
-			text_actions.global_position = ActualPlayer.global_position
+		if event.is_action_type() and Myinformation.Target != null:
+			controller.global_position = Myinformation.Target.global_position
+			text_actions.global_position = Myinformation.Target.global_position
 
 
 func _somebodyentered(body:Node2D = null):

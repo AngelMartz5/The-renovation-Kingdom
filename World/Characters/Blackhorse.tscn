@@ -1737,9 +1737,8 @@ NAME = "Horse"
 needSomething = true
 errorMesaje = "Necesitas domesticarlo"
 
-[node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "AnimacionSprite", "information") instance=ExtResource("5_lkrrb")]
+[node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "information") instance=ExtResource("5_lkrrb")]
 OWNER = NodePath("..")
-AnimacionSprite = NodePath("../Visuals/AnimatedSprite2D")
 information = NodePath("../Information")
 
 [node name="AnimationComponent" parent="." instance=ExtResource("3_t1tjp")]
@@ -1771,7 +1770,7 @@ texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_etxrd")
 animation = &"Idle"
-frame = 1
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6.5, 42)

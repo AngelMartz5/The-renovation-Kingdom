@@ -2,8 +2,7 @@ extends Node
 class_name Acomodation
 
 @onready var information = $"../Information"
- 
-var needsAcomodation : bool = false
+
 var other : Node2D
 var Me : Node2D 
 var distance: float = 0
@@ -11,7 +10,7 @@ var otherDistance : Vector2 = Vector2.ZERO
 var real_position : Vector2 = Vector2.ZERO
 
 func _physics_process(delta):
-	if needsAcomodation:
+	if information.needsAcomodation:
 		_acomodationFunc()
 
 func _setAcomodation(otherset : Node2D, meset : Node2D = self.owner, dis : float = 0):
@@ -25,7 +24,7 @@ func _setAcomodation(otherset : Node2D, meset : Node2D = self.owner, dis : float
 			otherDistance.x -= dis
 	else:
 		distance = dis
-	needsAcomodation = true
+	information.needsAcomodation = true
 	
 
 func _acomodationFunc():
@@ -37,4 +36,4 @@ func _acomodationFunc():
 		_quitAcomodation()
 
 func _quitAcomodation():
-	needsAcomodation = false
+	information.needsAcomodation = false

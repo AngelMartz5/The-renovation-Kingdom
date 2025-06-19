@@ -31,6 +31,7 @@ var isonAction : bool = false
 var Target : Node2D = null
 # False = Izquierda , True = Derecha
 var DirectionFace : bool = false
+var needsAcomodation : bool = false
 
 var gotDamage : bool = false
 var stateAtack : bool = false

@@ -13,4 +13,4 @@ script = ExtResource("1_mmjk4")
 
 [node name="InteractCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_escnj")
-debug_color = Color(0.959605, 0, 0.520697, 0.42)
+debug_color = Color(1.68458e-06, 0.635795, 0.412859, 0.42)

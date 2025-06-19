@@ -314,9 +314,8 @@ tipos = Array[String](["aldeano"])
 
 [node name="AtackComponent" parent="." instance=ExtResource("7_ua7or")]
 
-[node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "AnimacionSprite", "information") instance=ExtResource("3_e8k8t")]
+[node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "information") instance=ExtResource("3_e8k8t")]
 OWNER = NodePath("..")
-AnimacionSprite = NodePath("../Visuals/AnimatedSprite2D")
 information = NodePath("../Information")
 
 [node name="InteractComponent" parent="." instance=ExtResource("10_o4xxc")]
@@ -340,7 +339,6 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1peji")
 animation = &"Idle"
 autoplay = "Idle"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 54)

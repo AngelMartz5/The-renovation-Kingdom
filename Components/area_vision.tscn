@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://di47at3vrdya5"]
+
+[ext_resource type="Script" path="res://World/Characters/Bow/area_vision.gd" id="1_jmqtl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mc86n"]
+resource_local_to_scene = true
+size = Vector2(304.333, 95.6667)
+
+[node name="AreaVision" type="Area2D"]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_jmqtl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(133.833, 16.1667)
+shape = SubResource("RectangleShape2D_mc86n")
+debug_color = Color(0.532248, 0, 0.295945, 0.42)

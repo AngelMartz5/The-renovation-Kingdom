@@ -8,9 +8,12 @@ enum animationsInHasAnimations{
 	eat,#4
 	notEat,#5
 	getdamage,#6
-	atack#7
+	atack1,#7
+	atack2,#8
+	atack3,#9
+	atackEsp #10
 }
-
+@onready var atack_component = $"../AtackComponent" as AttackComponent
 @onready var animation_player = $"../AnimationPlayer" as AnimationPlayer
 @onready var animation_tree = $"../AnimationTree" as AnimationTree
 var especialAnim : String = ""
@@ -24,11 +27,15 @@ var beforeAnimation
 	{"is_eat" :  false},#4
 	{"isnot_eat" : false},#5
 	{"get_damage" : true},#6
-	{"is_atack" : true}#7
+	{"is_atack" : true},#7
+	{"is_atack2" : false},#8
+	{"is_atack3" : false},#9
+	{"is_atackEsp" : false}#10
 ]
 
 func _ready():
-	beforeAnimation = allActionsTogether.duplicate()
+	beforeAnimation = allActionsTogether.duplicate(true)
+	_actualizarAtack()
 
 func SetAnimationPlayer(ExactAnimation : animationsInHasAnimations):
 	var accion = allActionsTogether[ExactAnimation]         # Esto es: {"is_idle": true}
@@ -58,21 +65,32 @@ func SetAnimationPlayer(ExactAnimation : animationsInHasAnimations):
 	else:
 		animation_tree[obligated+nombre] = true
 	
-	#if ExactAnimation != animationsInHasAnimations.atack:
-	#	_recoverAnimation(ExactAnimation)
-	
-	
+	if ExactAnimation != animationsInHasAnimations.atack1:
+		_recoverAnimation(ExactAnimation)
+
+func _actualizarAtack():
+	var where : int = 0
+	var where2 : int =0
+	for anim in allActionsTogether:   
+		if where >= animationsInHasAnimations.atack1:
+			var nombreAnim = anim.keys()[0]  
+			var valorAnim = anim[nombreAnim]
+			if valorAnim:
+				atack_component._setArsenal(where2, true, where)
+			where2+=1
+			print("where: " + str(where))
+		where += 1
+		
 
 func _recoverAnimation(where : int):
 	var where2: int = 0
-	for before in allActionsTogether:
+	for before in beforeAnimation:
 		var nombreAnim2 = before.keys()[0]  
 		if where == where2:
 			beforeAnimation[where][nombreAnim2] = true
 		else:
 			beforeAnimation[where2][nombreAnim2] = false
 		where2 += 1
-	
 	
 
 func convert_list_to_dict(list_of_dicts: Array) -> Dictionary:

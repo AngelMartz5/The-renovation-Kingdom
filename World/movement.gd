@@ -17,7 +17,6 @@ var enTween2 : bool = false
 var fixTemporaly : Array[Vector2]
 
 @export var OWNER : CharacterBody2D
-@export var AnimacionSprite : AnimatedSprite2D
 @export var NameState : String = "Walk"
 @export var information : INFORMATION
 
@@ -70,7 +69,7 @@ func _physics_process(delta):
 			OWNER.velocity.x = velocidadCorrecta
 		_convertidor(movement.x)
 	else:
-		if !information.acomodation_component.needsAcomodation :
+		if !information.needsAcomodation :
 			movement = Vector2.ZERO
 		else:
 			OWNER.velocity.x = movement.x * Velocidad_Actual 
@@ -105,6 +104,17 @@ func _inicio_correr():
 func _decrecimiento_velocidad(velocidad : float):
 	velocidadCorrecta = velocidad
 	
+
+func _desplazamiento():
+	var tween = create_tween()
+	if owner.is_on_floor():
+		tween.tween_method(_detenimiento, owner.velocity.x, 0, 0.3)
+	else:
+		tween.tween_method(_detenimiento, owner.velocity.x, 0, 0.7)
+		
+
+func _detenimiento(Number : int ):
+	owner.velocity.x = Number
 
 func _convertidor(numero : int):
 	if numero > 0 :

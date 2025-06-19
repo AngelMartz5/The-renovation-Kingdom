@@ -22,13 +22,13 @@ func Enter():
 	movement._enter_run();
 
 func Update(delta:float):
+	if information.stateAtack:
+		if information.atack_component.attack():
+			Transitioned.emit(self, "Atack")
 	if movement.movement.x == 0:
 		Transitioned.emit(self, "Idle")
 	if !movement.Correr:
 		Transitioned.emit(self, "Walk")
-	if information.stateAtack:
-		if information.atack_component.attack():
-			Transitioned.emit(self, "Atack")
 	if information.gotDamage:
 		Transitioned.emit(self, "GetDamage")
 

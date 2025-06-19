@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpjrflf5pnt1v"]
+[gd_scene load_steps=15 format=3 uid="uid://cpjrflf5pnt1v"]
 
 [ext_resource type="Script" path="res://World/Characters/nut_shell_player.gd" id="1_m16c3"]
-[ext_resource type="PackedScene" uid="uid://dt5ql3ofoxyj" path="res://World/Characters/Bow/leaf_elf.tscn" id="2_g6wjd"]
+[ext_resource type="PackedScene" uid="uid://0pyddoxul31u" path="res://World/Characters/Sword/Mauler.tscn" id="2_bhnnn"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_xxwx6"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_yoa41"]
 [ext_resource type="FontFile" uid="uid://dvvs3esplqrf1" path="res://Fonts/PressStart2P.ttf" id="4_cqsjp"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://6jsp2jrf3vaw" path="res://World/Characters/life_and_stamina_bar.tscn" id="7_fqkur"]
 [ext_resource type="PackedScene" uid="uid://dnvkki5xsomg2" path="res://World/actionbuttons.tscn" id="7_kyov7"]
 [ext_resource type="Script" path="res://World/knob.gd" id="8_fn3n8"]
+[ext_resource type="PackedScene" uid="uid://coxhkqdcm0rdy" path="res://World/stamine_meter.tscn" id="8_j1ffo"]
 [ext_resource type="Texture2D" uid="uid://brj3k36hppri" path="res://sprites/joyknobpng.png" id="9_frsqa"]
 
 [sub_resource type="Resource" id="Resource_urkd1"]
@@ -24,7 +25,7 @@ ease = 2
 script = ExtResource("1_m16c3")
 AnimationTO = 5
 
-[node name="LeafElf" parent="." instance=ExtResource("2_g6wjd")]
+[node name="Mauler" parent="." instance=ExtResource("2_bhnnn")]
 
 [node name="InteractCamera2D" type="Node2D" parent="."]
 top_level = true
@@ -70,6 +71,9 @@ offset_top = -71.0
 offset_right = -6.0
 offset_bottom = -71.0
 scale = Vector2(1.99546, 1.99546)
+
+[node name="Stamine-Meter" parent="." instance=ExtResource("8_j1ffo")]
+position = Vector2(-105, 0)
 
 [node name="Controller" type="Node2D" parent="."]
 position = Vector2(0, 47)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cfxkbt3qbtk8y"]
+[gd_scene load_steps=19 format=3 uid="uid://cfxkbt3qbtk8y"]
 
 [ext_resource type="Script" path="res://World/world_1.gd" id="1_3n1kb"]
 [ext_resource type="Texture2D" uid="uid://bdh5jhn4kvyql" path="res://Parallax/bgcolor.png" id="1_gqqqj"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cpjrflf5pnt1v" path="res://World/Characters/NutShellPlayer.tscn" id="13_j21oy"]
 [ext_resource type="PackedScene" uid="uid://0pyddoxul31u" path="res://World/Characters/Sword/Mauler.tscn" id="13_jqhy7"]
 [ext_resource type="PackedScene" uid="uid://dt5ql3ofoxyj" path="res://World/Characters/Bow/leaf_elf.tscn" id="13_vpl6y"]
+[ext_resource type="PackedScene" uid="uid://cmfnyvfxria8g" path="res://World/BulletA.tscn" id="14_g4pcr"]
 
 [sub_resource type="Resource" id="Resource_cx33n"]
 script = ExtResource("8_lhifl")
@@ -404,5 +405,14 @@ one_shot = true
 [node name="LeafElf" parent="." instance=ExtResource("13_vpl6y")]
 position = Vector2(-32, 13)
 
+[node name="LeafElf2" parent="." instance=ExtResource("13_vpl6y")]
+position = Vector2(-609, 23)
+
 [node name="Mauler" parent="." instance=ExtResource("13_jqhy7")]
-position = Vector2(-488, -16)
+position = Vector2(-364, 46)
+
+[node name="Mauler2" parent="." instance=ExtResource("13_jqhy7")]
+position = Vector2(-847, 23)
+
+[node name="BulletA" parent="." instance=ExtResource("14_g4pcr")]
+position = Vector2(1449, -2)
