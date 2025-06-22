@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhu8y5t1qg53q"]
+
+[ext_resource type="Script" path="res://World/desapear_component.gd" id="1_k3viq"]
+
+[node name="DesapearComponent" type="Node"]
+script = ExtResource("1_k3viq")
+
+[node name="DisappearTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DisappearTimer" to="." method="_TimmerFinished"]

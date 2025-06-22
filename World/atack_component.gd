@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name AttackComponent
 
 enum AtacksAvalibles {
@@ -7,7 +7,7 @@ enum AtacksAvalibles {
 	Atack3,
 	AtackEspecial
 }
-@export var NearestPerson : Node2D = null
+
 @export var EspecialAtack : PackedScene 
 @export var normalProjectiles : Array[PackedScene] = []
 @export var ArsenalDeAtaques = [
@@ -29,6 +29,7 @@ enum AtacksAvalibles {
 @onready var cooldown_timer = $CooldownTimer as Timer
 @onready var imunity_timer = $ImunityTimer as Timer
 @onready var atack = $"../State Machine/Atack" as Atack
+@onready var information = $"../Information" as INFORMATION
 
 
 var cooldownFinished : bool = true
@@ -99,13 +100,56 @@ func _nextAttack():
 func _appearProjectile():
 	pass
 
-func _appearArrow():
-	if  normalProjectiles.size() == 0:
-		return
-	
-	var aleatoriedad : int = randi_range(0,normalProjectiles.size())
-	var projectile : Node2D = normalProjectiles[aleatoriedad].instantiate()
-	SignalBus.Actualworld.add_child(projectile)
+# TIENES QUE MANUALMENTE MOVER EL NODO EN LA PUNTA DEL ARCO O DONDE SEA QUE QUIERAS QUE APAREZCA
+func _appearArrow(KnowWhereTargetIs:bool = false,UseSpecialRow : bool = false,Correction : Vector2 = Vector2(120,40)):
+	if !KnowWhereTargetIs:
+		if  normalProjectiles.size() == 0:
+			return
+		var aleatoriedad : int = randi_range(0,0)
+		if aleatoriedad > normalProjectiles.size():
+			aleatoriedad = normalProjectiles.size()-1
+		print("ALEAOTIEDAD: "+str(aleatoriedad))
+		var projectile : Node2D = normalProjectiles[aleatoriedad].instantiate()
+		SignalBus.Actualworld.add_child(projectile)
+		projectile.global_position.y = owner.global_position.y+Correction.y
+		if information.DirectionFace:
+			print("DERECHA")
+			
+			projectile.global_position.x = owner.global_position.x + Correction.x
+			projectile.information.movimiento_ai_prueba.DirectionIA = Vector2.RIGHT
+			#projectile.information.movimiento_ai_prueba.DirectionIA = Vector2.RIGHT
+		else :
+			print("IZQUIERDA")
+			if projectile.position.x > 0:
+				projectile.position.x *= -1
+			projectile.global_position.x = owner.global_position.x - Correction.x
+			projectile.information.movimiento_ai_prueba.DirectionIA = Vector2.LEFT
+	else:
+		if UseSpecialRow:
+			var projectile : Node2D = EspecialAtack.instantiate()
+			SignalBus.Actualworld.add_child(projectile)
+			var objecive : Node2D = information.NearestPerson
+
+			# Posición base (por defecto hacia adelante)
+			if objecive == null:
+				projectile.global_position.x = owner.global_position.x + (500 * information.visuals.scale.x)
+				projectile.global_position.y = owner.global_position.y
+			else:
+				print("NEAREST PERSON: " + str(objecive))
+				projectile.global_position = objecive.global_position
+
+			# --- Detectar suelo con RayCast2D ---
+			var raycast := RayCast2D.new()
+			raycast.target_position = Vector2(0, 1000)
+			raycast.enabled = true
+			projectile.add_child(raycast)
+			raycast.force_raycast_update()
+
+			if raycast.is_colliding():
+				projectile.global_position.y = raycast.get_collision_point().y
+			else:
+				projectile.global_position.y = owner.global_position.y  # Fallback si no detecta suelo
+
 
 func _find_nearest_forward(number: int) -> int:
 	if NumbersAvalibles.size() <=1:

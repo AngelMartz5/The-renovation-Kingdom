@@ -19,7 +19,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2jqx"]
 resource_local_to_scene = true
-size = Vector2(216.333, 110.167)
+size = Vector2(78.3333, 56.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51eef"]
 size = Vector2(42, 44)
@@ -599,15 +599,48 @@ tracks/4/path = NodePath("../Visuals/AreaAtack")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.366667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.366667),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"_inicioAnimation"
-}, {
 "args": [],
 "method": &"_hacerDaño"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Visuals/AreaAtack/VisionAtack:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(70, 54.5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Visuals/AreaAtack/VisionAtack:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.72, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Visuals/AreaAtack/VisionAtack:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32.9167, -4.41667)]
 }
 
 [sub_resource type="Animation" id="Animation_qtjs7"]
@@ -636,6 +669,56 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Attack2"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Visuals/AreaAtack/VisionAtack:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Visuals/AreaAtack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_hacerDaño"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Visuals/AreaAtack/VisionAtack:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.133333, 0.2, 0.433333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32.9167, -4.41667), Vector2(-26.984, -4.417), Vector2(-19.292, -4.417), Vector2(-32.9167, -4.41667)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Visuals/AreaAtack/VisionAtack:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.72, 1), Vector2(0.72, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_56kex"]
 length = 0.952632
@@ -663,6 +746,56 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Attack3"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Visuals/AreaAtack/VisionAtack:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.433333, 0.466667, 0.8, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(70, 54.5), Vector2(88.5834, 74.25), Vector2(88.5834, 74.25), Vector2(70, 54.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Visuals/AreaAtack/VisionAtack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.433333, 0.466667, 0.8, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32.9167, -4.41667), Vector2(54.3333, -16), Vector2(54.3333, -16), Vector2(-32.9167, -4.41667)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Visuals/AreaAtack/VisionAtack:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.433333, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Visuals/AreaAtack")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.566667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_hacerDaño"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_2yprw"]
 length = 0.842105
@@ -689,6 +822,56 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["AttackEsp"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Visuals/AreaAtack/VisionAtack:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Visuals/AreaAtack/VisionAtack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.8, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32.9167, -4.41667), Vector2(41.6667, -16.6666), Vector2(41.6667, -16.6666), Vector2(-32.9167, -4.41667)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Visuals/AreaAtack/VisionAtack:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.8, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.72, 1), Vector2(1.695, -1.4), Vector2(1.695, -1.4), Vector2(0.72, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Visuals/AreaAtack")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_hacerDaño"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_rbtif"]
@@ -771,6 +954,42 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Visuals/AreaAtack/VisionAtack:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(73.1667, 54.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Visuals/AreaAtack/VisionAtack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32.9167, -4.41667)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Visuals/AreaAtack/VisionAtack:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_diak4"]
@@ -1009,27 +1228,6 @@ tipos = Array[String](["enemigo", "persona"])
 cooldown = 1.0
 
 [node name="AnimationComponent" parent="." instance=ExtResource("5_egf4g")]
-allActionsTogether = [{
-"is_idle": true
-}, {
-"is_walk": true
-}, {
-"is_run": false
-}, {
-"is_eat": false
-}, {
-"isnot_eat": false
-}, {
-"get_damage": true
-}, {
-"is_atack": true
-}, {
-"is_atack2": true
-}, {
-"is_atack3": true
-}, {
-"is_atackEsp": true
-}]
 
 [node name="Gravity" parent="." instance=ExtResource("8_886e8")]
 
@@ -1037,7 +1235,7 @@ allActionsTogether = [{
 position = Vector2(0, -12.6667)
 
 [node name="InteractCollision" parent="Interact" index="0"]
-position = Vector2(19.8333, 8.41668)
+position = Vector2(7.5, 35.25)
 shape = SubResource("RectangleShape2D_i2jqx")
 
 [node name="InteractComponent" parent="." instance=ExtResource("10_suc1h")]
@@ -1065,6 +1263,7 @@ scale = Vector2(1.00347, 1)
 sprite_frames = SubResource("SpriteFrames_5gk6u")
 animation = &"Idle"
 autoplay = "Idle"
+frame = 1
 
 [node name="AreaAtack" parent="Visuals" instance=ExtResource("15_3u0x0")]
 

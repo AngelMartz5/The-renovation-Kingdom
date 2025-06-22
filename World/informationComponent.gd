@@ -15,13 +15,15 @@ class_name INFORMATION
 @onready var animated_sprite_2d = $"../Visuals/AnimatedSprite2D" as AnimatedSprite2D
 @onready var atack_component = $"../AtackComponent" as AttackComponent
 @onready var area_atack = $"../Visuals/AreaAtack" as AreaAttack
+@onready var area_vision = $"../Visuals/AreaVision" as AreaVision
 
 @export var velocidad_inicial : int = 150
-@export var life : int = 100;
 @export var mytype : Type
 @export var distanceBetweenThem : float = 9
 @export var NAME : String = ""
 @export var isPeaceful : bool = true
+@export var NearestPerson : Node2D = null
+@export var isPlayerFallen : bool = false
 
 var seParaParaAtacar : bool = false
 # Target es necesario especificarlo en cada personaje

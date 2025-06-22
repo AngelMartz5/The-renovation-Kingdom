@@ -11,7 +11,11 @@ enum animationsInHasAnimations{
 	atack1,#7
 	atack2,#8
 	atack3,#9
-	atackEsp #10
+	atackEsp, #10
+	jump, #11
+	fallen,  #12
+	land,  #13
+	roll # 14
 }
 @onready var atack_component = $"../AtackComponent" as AttackComponent
 @onready var animation_player = $"../AnimationPlayer" as AnimationPlayer
@@ -30,21 +34,25 @@ var beforeAnimation
 	{"is_atack" : true},#7
 	{"is_atack2" : false},#8
 	{"is_atack3" : false},#9
-	{"is_atackEsp" : false}#10
+	{"is_atackEsp" : false}, #10
+	{"is_jump" : false}, # 11
+	{"is_fallen" : false},  #12
+	{"is_land" : false},  # 13
+	{"is_rolling" : false} # 14
 ]
 
 func _ready():
 	beforeAnimation = allActionsTogether.duplicate(true)
 	_actualizarAtack()
 
-func SetAnimationPlayer(ExactAnimation : animationsInHasAnimations):
+func SetAnimationPlayer(ExactAnimation : animationsInHasAnimations) -> bool:
 	var accion = allActionsTogether[ExactAnimation]         # Esto es: {"is_idle": true}
 	var nombre = accion.keys()[0]              # "is_idle"
 	var valor = accion[nombre]                              # True o false
 	
 	
 	if !valor:
-		return
+		return false
 	
 	#print("ENTRO: "+str(owner)+ "  PARA HACER: "+str(animationsInHasAnimations.find_key(ExactAnimation)) + " MAS : " + str(nombre))
 	var where : int = 0
@@ -65,8 +73,9 @@ func SetAnimationPlayer(ExactAnimation : animationsInHasAnimations):
 	else:
 		animation_tree[obligated+nombre] = true
 	
-	if ExactAnimation != animationsInHasAnimations.atack1:
+	if ExactAnimation == animationsInHasAnimations.idle or ExactAnimation == animationsInHasAnimations.walk or ExactAnimation == animationsInHasAnimations.run:
 		_recoverAnimation(ExactAnimation)
+	return true
 
 func _actualizarAtack():
 	var where : int = 0

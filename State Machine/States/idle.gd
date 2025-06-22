@@ -24,6 +24,8 @@ func Update(delta:float):
 	if information.stateAtack:
 		if information.atack_component.attack() :
 			Transitioned.emit(self, "Atack")
+	if information.isPlayerFallen:
+		Transitioned.emit(self, "Fallen")
 	if movement.movement.x != 0 and !movement.wallColliding:
 		Transitioned.emit(self, "Walk")
 	if information.gotDamage:

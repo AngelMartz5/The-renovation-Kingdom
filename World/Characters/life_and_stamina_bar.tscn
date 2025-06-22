@@ -39,7 +39,8 @@ offset_bottom = -1.935
 scale = Vector2(3.76383, 4.5936)
 theme_override_styles/background = SubResource("StyleBoxEmpty_wwb6g")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dldrl")
-value = 50.0
+step = 0.001
+value = 49.51
 show_percentage = false
 
 [node name="DamageProgressBar" type="ProgressBar" parent="LifeProgressBar"]
@@ -56,14 +57,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_wwb6g")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hpiac")
-value = 100.0
+step = 0.001
+value = 91.71
 show_percentage = false
+
+[node name="ColorRect" type="ColorRect" parent="LifeProgressBar/DamageProgressBar"]
+z_index = -4
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.425037, 0.0273898)
+color = Color(0, 0, 0, 0.552941)
 
 [node name="BarSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1.5, -46.5)
 texture = ExtResource("2_mhrhh")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TimerDamage" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerDamage" to="." method="_aftertimer_damage"]

@@ -94,8 +94,8 @@ func _input(event):
 			_changeControl(true)
 		
 		if event.is_action_type() and Myinformation.Target != null:
-			controller.global_position = Myinformation.Target.global_position
-			text_actions.global_position = Myinformation.Target.global_position
+			controller.global_position = ActualPlayer.global_position
+			text_actions.global_position = ActualPlayer.global_position
 
 
 func _somebodyentered(body:Node2D = null):
@@ -105,7 +105,6 @@ func _somebodyentered(body:Node2D = null):
 		interact_camera_2d.set_priority(11)
 	else:
 		interact_camera_2d.set_priority(0)
-
 func _changeControl(bol:bool):
 	var target = Myinformation.Target
 	controller.visible = bol

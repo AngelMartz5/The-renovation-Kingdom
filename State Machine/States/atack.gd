@@ -24,6 +24,7 @@ func Exit():
 
 func _AniimationQuit():
 	var where = information.animation_component._getBeforeAnimation()
+	information.gotDamage = false
 	if where == AnimationComponent.animationsInHasAnimations.idle:
 		Transitioned.emit(self, "Idle")
 	elif where == AnimationComponent.animationsInHasAnimations.walk:

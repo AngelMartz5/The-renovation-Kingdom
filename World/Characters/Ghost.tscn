@@ -294,6 +294,27 @@ script = ExtResource("4_e37nf")
 tipos = Array[String](["fantasma"])
 
 [node name="AnimationComponent" parent="." instance=ExtResource("5_g46yy")]
+allActionsTogether = [{
+"is_idle": true
+}, {
+"is_walk": true
+}, {
+"is_run": false
+}, {
+"is_eat": false
+}, {
+"isnot_eat": false
+}, {
+"get_damage": false
+}, {
+"is_atack": false
+}, {
+"is_atack2": false
+}, {
+"is_atack3": false
+}, {
+"is_atackEsp": false
+}]
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_bgtip")]
 
@@ -333,7 +354,7 @@ position = Vector2(-2.33333, 18)
 scale = Vector2(-0.412, 0.411)
 sprite_frames = SubResource("SpriteFrames_5gk6u")
 animation = &"Idle"
-frame = 5
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")

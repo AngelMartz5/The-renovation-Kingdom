@@ -2,7 +2,6 @@ extends  State
 class_name GetDamage
 @onready var animation_tree : AnimationTree = $"../../AnimationTree"
 @onready var atack_component = $"../../AtackComponent"
-
 signal AtackEnter()
 
 func _ready():
@@ -10,6 +9,7 @@ func _ready():
 	
 
 func Enter():
+	print("GOT DAMAGED")
 	information.animation_component.SetAnimationPlayer(AnimationTO)
 	if atack_component.hasInmunity:
 		atack_component.startInmunity()
@@ -19,3 +19,5 @@ func Exit():
 
 func _on_animation_tree_animation_finished(anim_name):
 	Transitioned.emit(self, "Idle")
+	information.stateAtack = false
+	print("ME AYUDA2: "+ anim_name)

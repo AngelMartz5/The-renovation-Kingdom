@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/atack_component.gd" id="1_njhdn"]
 
-[node name="AtackComponent" type="Node"]
+[node name="AtackComponent" type="Node2D"]
 script = ExtResource("1_njhdn")
 cooldown = 5.0
 AnimationTO = 6

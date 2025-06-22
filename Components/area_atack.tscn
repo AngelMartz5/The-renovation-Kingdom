@@ -16,3 +16,7 @@ script = ExtResource("1_l1h0w")
 position = Vector2(-32.9167, -4.41667)
 shape = SubResource("RectangleShape2D_x0i8s")
 disabled = true
+
+[node name="TimerAttack" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerAttack" to="." method="_AfterTimer"]

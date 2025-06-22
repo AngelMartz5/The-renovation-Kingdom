@@ -15,9 +15,10 @@ func _ready() -> void:
 	body_exited.connect(Item_exited)
 
 func Item_entered(body:Node2D):
-	if body.information.mytype != null and body != owner:
-		_searchTarget(body)
-		CambiosRequeridos = true
+	if  body != owner:
+		if body.information.mytype != null:
+			_searchTarget(body)
+			CambiosRequeridos = true
 	
 
 func Item_exited(body:Node2D):
@@ -28,7 +29,6 @@ func Item_exited(body:Node2D):
 
 func _process(delta):
 	if CambiosRequeridos:
-		print("CHANGES")
 		bodyinteract = get_closest_target()
 		somebodyentered.emit(bodyinteract)
 

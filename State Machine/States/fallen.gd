@@ -1,7 +1,7 @@
 extends State
-class_name Walk
+class_name Fallen
 
-signal WalkInit(WalkForce : float)
+signal Falling(WalkForce : float)
 
 @export var OWNER : CharacterBody2D
 @export var movement : Node 
@@ -15,17 +15,13 @@ func _ready():
 func Enter(): 
 	print("OWNER: "+ str(OWNER))
 	OWNER.information.animation_component.SetAnimationPlayer(AnimationTO)
-	
+	print("Salté")
 
 func Update(delta:float):
-	if information.stateAtack:
-		if information.atack_component.attack():
-			Transitioned.emit(self, "Atack")
-	if movement.movement.x == 0 || movement.wallColliding:
+	if !information.isPlayerFallen:
 		Transitioned.emit(self, "Idle")
-	if movement.Correr: 
-		
-		Transitioned.emit(self, "Run")
-		
-	if information.gotDamage:
-		Transitioned.emit(self, "GetDamage")
+
+func Exit():
+	if !OWNER.information.animation_component.SetAnimationPlayer(AnimationComponent.animationsInHasAnimations.roll):
+		OWNER.information.animation_component.SetAnimationPlayer(AnimationComponent.animationsInHasAnimations.land)
+	

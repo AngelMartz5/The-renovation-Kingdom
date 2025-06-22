@@ -1,26 +1,103 @@
-[gd_scene load_steps=26 format=3 uid="uid://cmfnyvfxria8g"]
+[gd_scene load_steps=37 format=3 uid="uid://dq2ilq0ksb5ca"]
 
-[ext_resource type="Script" path="res://World/bullet_a.gd" id="1_uqqcm"]
-[ext_resource type="PackedScene" uid="uid://biva725uc0onb" path="res://Components/information.tscn" id="2_d6wrd"]
-[ext_resource type="PackedScene" uid="uid://dhu8y5t1qg53q" path="res://Components/desapear_component.tscn" id="6_f7g5l"]
-[ext_resource type="Texture2D" uid="uid://drmhdayr8jioe" path="res://sprites/Player_Enemies_Objects/Imagenes/HumanorSimilar/Bow/Elementals_Leaf_ranger_Free_v1.0/animations/spritesheets/projectiles_and_effects_256x128_SpriteSheet.png" id="7_gnral"]
-[ext_resource type="PackedScene" uid="uid://cpsdve1xw188s" path="res://Components/gravity.tscn" id="8_jt7dj"]
-[ext_resource type="PackedScene" uid="uid://ckhff6a3oc3qc" path="res://Components/movement.tscn" id="11_jj5u2"]
-[ext_resource type="PackedScene" uid="uid://c0ragmrlcr6yr" path="res://Components/movimiento_ai_prueba.tscn" id="12_8eqat"]
-[ext_resource type="PackedScene" uid="uid://dge6g8j65kixg" path="res://Components/area_atack.tscn" id="16_2lysr"]
+[ext_resource type="Script" path="res://World/bullet_b.gd" id="1_v0pwg"]
+[ext_resource type="PackedScene" uid="uid://biva725uc0onb" path="res://Components/information.tscn" id="2_teq0k"]
+[ext_resource type="PackedScene" uid="uid://cpsdve1xw188s" path="res://Components/gravity.tscn" id="3_yvdox"]
+[ext_resource type="PackedScene" uid="uid://ckhff6a3oc3qc" path="res://Components/movement.tscn" id="4_db0v0"]
+[ext_resource type="PackedScene" uid="uid://c0ragmrlcr6yr" path="res://Components/movimiento_ai_prueba.tscn" id="5_8cxn0"]
+[ext_resource type="PackedScene" uid="uid://dhu8y5t1qg53q" path="res://Components/desapear_component.tscn" id="6_t8nf0"]
+[ext_resource type="Texture2D" uid="uid://drmhdayr8jioe" path="res://sprites/Player_Enemies_Objects/Imagenes/HumanorSimilar/Bow/Elementals_Leaf_ranger_Free_v1.0/animations/spritesheets/projectiles_and_effects_256x128_SpriteSheet.png" id="7_jmy2h"]
+[ext_resource type="PackedScene" uid="uid://dge6g8j65kixg" path="res://Components/area_atack.tscn" id="8_4nmri"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51eef"]
-size = Vector2(33.3333, 3.33333)
+size = Vector2(24.3334, 18.3333)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwcxc"]
-atlas = ExtResource("7_gnral")
-region = Rect2(0, 0, 256, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytfjr"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(0, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83cbc"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(256, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ms0t"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(512, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reqy1"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(768, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jebgw"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(1024, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kca4i"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(1280, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvqj7"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(1536, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iykb"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(1792, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1xxe"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(2048, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pci0"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(2304, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lat6"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(2560, 896, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05nlk"]
+atlas = ExtResource("7_jmy2h")
+region = Rect2(2048, 384, 256, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5gk6u"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wwcxc")
+"texture": SubResource("AtlasTexture_ytfjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83cbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ms0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reqy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jebgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kca4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvqj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1iykb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1xxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pci0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lat6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05nlk")
 }],
 "loop": true,
 "name": &"Idle",
@@ -28,7 +105,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0i8s"]
-size = Vector2(42.6667, 13.6667)
+size = Vector2(65, 122)
 
 [sub_resource type="Animation" id="Animation_6bn13"]
 length = 0.6
@@ -207,7 +284,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_yq31t"]
-length = 0.1
+length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -216,10 +293,10 @@ tracks/0/path = NodePath("../Visuals/AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -244,6 +321,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Visuals/AreaAtack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 1.13333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_initDamageContinuo"
+}, {
+"args": [],
+"method": &"_FinishTimer"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_p71yk"]
@@ -356,34 +450,33 @@ states/Start/position = Vector2(184, 90)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_m2gft")]
 graph_offset = Vector2(-121, -162)
 
-[node name="BulletA" type="CharacterBody2D"]
-position = Vector2(49, 0)
+[node name="BulletB" type="CharacterBody2D"]
 scale = Vector2(3, 3)
 collision_layer = 64
-script = ExtResource("1_uqqcm")
+script = ExtResource("1_v0pwg")
 
-[node name="Information" parent="." instance=ExtResource("2_d6wrd")]
+[node name="Information" parent="." instance=ExtResource("2_teq0k")]
 velocidad_inicial = 500
 distanceBetweenThem = 1000.0
 NAME = "Mauler"
 
-[node name="Gravity" parent="." instance=ExtResource("8_jt7dj")]
-fly = true
+[node name="Gravity" parent="." instance=ExtResource("3_yvdox")]
 
-[node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "information") instance=ExtResource("11_jj5u2")]
+[node name="Movement" parent="." node_paths=PackedStringArray("OWNER", "information") instance=ExtResource("4_db0v0")]
 OWNER = NodePath("..")
 information = NodePath("../Information")
 
-[node name="MovimientoAiPrueba" parent="." instance=ExtResource("12_8eqat")]
+[node name="MovimientoAiPrueba" parent="." instance=ExtResource("5_8cxn0")]
 
-[node name="DesapearComponent" parent="." instance=ExtResource("6_f7g5l")]
+[node name="DesapearComponent" parent="." instance=ExtResource("6_t8nf0")]
+BehaviorAsANormalBullet = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.3334, 0.666667)
+position = Vector2(6.83336, -10.8333)
 shape = SubResource("RectangleShape2D_51eef")
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(-1.90735e-06, -41)
+position = Vector2(0, -107)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
 texture_filter = 1
@@ -392,13 +485,17 @@ scale = Vector2(1.00347, 1)
 sprite_frames = SubResource("SpriteFrames_5gk6u")
 animation = &"Idle"
 autoplay = "Idle"
+frame = 11
 
-[node name="AreaAtack" parent="Visuals" instance=ExtResource("16_2lysr")]
+[node name="AreaAtack" parent="Visuals" instance=ExtResource("8_4nmri")]
 DestroyAfterDamage = true
+attack_type = 1
+damage = 1.0
+tick_interval = 0.1
 AtacarSolo = true
 
 [node name="VisionAtack" parent="Visuals/AreaAtack" index="0"]
-position = Vector2(-35, -1.8333)
+position = Vector2(-37.1667, 2.66667)
 shape = SubResource("RectangleShape2D_x0i8s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
