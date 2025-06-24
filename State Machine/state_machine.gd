@@ -5,6 +5,16 @@ extends Node
 var current_state: State
 var states : Dictionary = {}
 
+@onready var idleST = $Idle
+@onready var walkST = $Walk
+@onready var runST = $Run
+@onready var atackST = $Atack
+@onready var get_damageST = $GetDamage
+@onready var jumpST = $Jump
+@onready var fallenST = $Fallen
+@onready var rollST = $Roll
+
+
 
 func _ready() -> void:
 	for child in get_children():
@@ -12,6 +22,7 @@ func _ready() -> void:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
 	if initial_state:
+		print("ALL SET ALMOST")
 		initial_state.Enter()
 		current_state = initial_state
 

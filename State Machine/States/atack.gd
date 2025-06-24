@@ -7,8 +7,10 @@ signal AtackEnter()
 
 func _ready():
 	animation_tree.animation_finished.connect(_on_animation_tree_animation_finished)
+
 func Enter():
 	information.animation_component.SetAnimationPlayer(AnimationTO)
+	information.canCharacterJump = false
 	print("ATACK")
 	if information.seParaParaAtacar:
 		information.atacking = true
@@ -21,9 +23,10 @@ func Update(_delta: float):
 
 func Exit():
 	information.stateAtack = false
+	information.canCharacterJump = true
 
 func _AniimationQuit():
-	var where = information.animation_component._getBeforeAnimation()
+	var where = information.animation_component.beforeAnimation
 	information.gotDamage = false
 	if where == AnimationComponent.animationsInHasAnimations.idle:
 		Transitioned.emit(self, "Idle")

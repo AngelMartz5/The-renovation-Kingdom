@@ -14,5 +14,4 @@ func _physics_process(delta):
 		owner.queue_free()
 
 func _TimmerFinished():
-	print("QUEUE FREE")
 	owner.queue_free()

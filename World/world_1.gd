@@ -5,7 +5,8 @@ extends Node2D
 func _ready():
 	# Aquí cargas el mundo, el mapa, los enemigos, lo que sea...g
 	SignalBus.Actualworld = self
-	
+	await get_tree().create_timer(timeToStart/4).timeout
+	SignalBus.AnimationSets
 	await get_tree().create_timer(timeToStart/2).timeout  # Simula que todo carga
 	SignalBus.SetEverything.emit()
 	await get_tree().create_timer(timeToStart).timeout  # Simula que todo carga

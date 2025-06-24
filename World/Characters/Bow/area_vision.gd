@@ -15,7 +15,6 @@ func _ready():
 func _targetAppeard(body:Node2D):
 	if body == owner:
 		return
-	print("ENTRO:  " + str(body))
 	_searchTarget(body,)
 
 func _targetDesappeard(body:Node2D):

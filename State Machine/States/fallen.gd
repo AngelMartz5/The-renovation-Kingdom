@@ -6,22 +6,25 @@ signal Falling(WalkForce : float)
 @export var OWNER : CharacterBody2D
 @export var movement : Node 
 
+@onready var animation_component: Node = $"../../AnimationComponent" as AnimationComponent
+@onready var animation_tree = $"../../AnimationTree"  as AnimationTree
 func _ready():
 	if OWNER == null:
 		OWNER = owner.owner
 	if movement == null:
 		movement = information.movement
+	await SignalBus.SetEverything
+	var valueResult : bool = animation_component.GetAnimationPlayer(AnimationTO)
+	exist = valueResult
 
 func Enter(): 
-	print("OWNER: "+ str(OWNER))
+	print("_____________________________________OTHER                    FALLEN ______________________________________________")
 	OWNER.information.animation_component.SetAnimationPlayer(AnimationTO)
-	print("Salté")
 
 func Update(delta:float):
 	if !information.isPlayerFallen:
-		Transitioned.emit(self, "Idle")
-
-func Exit():
-	if !OWNER.information.animation_component.SetAnimationPlayer(AnimationComponent.animationsInHasAnimations.roll):
-		OWNER.information.animation_component.SetAnimationPlayer(AnimationComponent.animationsInHasAnimations.land)
-	
+		if state_machine.rollST.exist:
+			print("ENTRO A ROLLLLLLLLLLLLLLLLLLLLLLLLEAR")
+			Transitioned.emit(self, "Roll")
+		else:
+			Transitioned.emit(self, "Idle")

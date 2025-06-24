@@ -14,7 +14,6 @@ func _ready():
 func _bodyentered(body:Node2D):
 	if body != null:
 		if body != owner:
-			print(body)
 			somebodyAvalible = true
 			if !information.isonAction:
 				_setTarget()

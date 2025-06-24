@@ -28,13 +28,14 @@ class_name INFORMATION
 var seParaParaAtacar : bool = false
 # Target es necesario especificarlo en cada personaje
 var atacking : bool = false
+var jumped : bool = false
 var myScene : PackedScene
 var isonAction : bool = false
 var Target : Node2D = null
 # False = Izquierda , True = Derecha
 var DirectionFace : bool = false
 var needsAcomodation : bool = false
-
+var canCharacterJump: bool = true
 var gotDamage : bool = false
 var stateAtack : bool = false
 # === Condiciones para acciones ===

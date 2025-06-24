@@ -31,7 +31,6 @@ func _ready():
 func _targetAppeard(body:Node2D):
 	if body == owner:
 		return
-	print("ENTRO:  " + str(body))
 	_searchTarget(body,)
 	if AtacarSolo:
 		_searchTarget(body, true, tagetAlreadyAttack)
@@ -64,7 +63,6 @@ func _targetDesappeard(body:Node2D):
 		_searchTarget(body, false, tagetAlreadyAttack)
 
 func _AfterTimer():
-	print("ADTER TIMER ACTIVATED")
 	_hacerDaño(tagetAlreadyAttack)
 
 func _searchTarget(targetToAdd : Node2D, agregar : bool = true,WichArray : Array[Node2D] = targetToAttack):
@@ -107,7 +105,6 @@ func _hacerDaño(WichArray : Array[Node2D] = targetToAttack):
 		"duration": duration,
 		"tick_interval": tick_interval,
 	}
-	print(WichArray)
 	if DestroyAfterDamage and attack_type != AttackType.DOT:
 		var targetAttack = WichArray[0]
 		targetAttack.information.health_component.ChangeLife.connect(_hitEnemy)

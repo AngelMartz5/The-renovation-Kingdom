@@ -56,7 +56,6 @@ func _getAtackNumber(number : int) -> int:
 	var value : int = 7
 	var where : int = 0
 	for arsenal in ArsenalDeAtaques:
-		print(arsenal[arsenal.keys()[3]])
 		if number == where:
 			value = arsenal[arsenal.keys()[3]]
 			return value
@@ -113,13 +112,10 @@ func _appearArrow(KnowWhereTargetIs:bool = false,UseSpecialRow : bool = false,Co
 		SignalBus.Actualworld.add_child(projectile)
 		projectile.global_position.y = owner.global_position.y+Correction.y
 		if information.DirectionFace:
-			print("DERECHA")
-			
 			projectile.global_position.x = owner.global_position.x + Correction.x
 			projectile.information.movimiento_ai_prueba.DirectionIA = Vector2.RIGHT
 			#projectile.information.movimiento_ai_prueba.DirectionIA = Vector2.RIGHT
 		else :
-			print("IZQUIERDA")
 			if projectile.position.x > 0:
 				projectile.position.x *= -1
 			projectile.global_position.x = owner.global_position.x - Correction.x
@@ -135,7 +131,6 @@ func _appearArrow(KnowWhereTargetIs:bool = false,UseSpecialRow : bool = false,Co
 				projectile.global_position.x = owner.global_position.x + (500 * information.visuals.scale.x)
 				projectile.global_position.y = owner.global_position.y
 			else:
-				print("NEAREST PERSON: " + str(objecive))
 				projectile.global_position = objecive.global_position
 
 			# --- Detectar suelo con RayCast2D ---
@@ -181,7 +176,6 @@ func try_attack(target: Node, damegeDic : Dictionary):
  
 func apply_attack(target: Node, damegeDic : Dictionary):
 	var damage = damegeDic["damage"]
-	print(damage)
 	health_component.damage(damage)
 
 func startInmunity():

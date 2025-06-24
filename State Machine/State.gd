@@ -6,9 +6,10 @@ class_name State
 @export var AnimationTO : AnimationComponent.animationsInHasAnimations
 @onready var information = $"../../Information" as INFORMATION
 signal Transitioned
+@onready var state_machine = $".." 
 
 var Completed : bool = true
-
+@export var exist : bool = false
 
 
 func Enter():

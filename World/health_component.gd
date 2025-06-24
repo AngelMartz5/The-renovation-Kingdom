@@ -18,7 +18,7 @@ func damage(damage_mount : float):
 	Callable(check_death).call_deferred()
 
 func _current_health(current : float):
-	print("BEGORE: "+str(current_health) + " NOW LIFE: "+str(current))
+	#print("BEGORE: "+str(current_health) + " NOW LIFE: "+str(current))
 	if current < current_health:
 		information.gotDamage = true
 	current_health = current
