@@ -2,7 +2,7 @@ extends Area2D
 class_name AreaAttack
 
 # Enums para tipos de ataque y tipos elementales
-enum AttackType { DIRECT, DOT }
+enum AttackType { DIRECT, DOT , GRAVITY }
 enum ElementType { PHYSICAL, FIRE, POISON, ICE, MAGIC }
 
 var targetToAttack : Array[Node2D] = []

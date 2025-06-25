@@ -27,7 +27,7 @@ AnimationTO = 2
 
 [node name="Atack" type="Node" parent="."]
 script = ExtResource("5_e223w")
-AnimationTO = 10
+AnimationTO = 11
 
 [node name="GetDamage" type="Node" parent="."]
 script = ExtResource("6_g50ov")

@@ -25,7 +25,7 @@ class_name INFORMATION
 @export var NearestPerson : Node2D = null
 @export var isPlayerFallen : bool = false
 
-var seParaParaAtacar : bool = false
+@export var seParaParaAtacar : bool = false
 # Target es necesario especificarlo en cada personaje
 var atacking : bool = false
 var jumped : bool = false
@@ -58,3 +58,5 @@ var mana_suficiente: bool = true
 var habilidad_aura: bool = false
 var Poseido : bool = false
 var Desposeido : bool = true
+
+signal Flying(isRightNowFlying : bool)

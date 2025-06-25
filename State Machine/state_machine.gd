@@ -15,7 +15,6 @@ var states : Dictionary = {}
 @onready var rollST = $Roll
 
 
-
 func _ready() -> void:
 	for child in get_children():
 		if child is State:
@@ -28,7 +27,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if current_state : 
+	if current_state: 
 		current_state.Update(delta)
 
 
@@ -38,6 +37,7 @@ func _physics_process(delta: float) -> void:
 
 
 func on_child_transition(state, new_state_name):
+	
 	if state != current_state:
 		return
 	
@@ -54,7 +54,7 @@ func on_child_transition(state, new_state_name):
 	
 	current_state = new_state
 	
-	if !new_state.Completed:
-		on_child_transition(new_state, "idle")
-		printerr("Corrupt: "+str(new_state)+"  | Falta una REFERENCIA")
-		return
+	#if !new_state.Completed:
+	#	on_child_transition(new_state, "idle")
+	#	printerr("Corrupt: "+str(new_state)+"  | Falta una REFERENCIA")
+	#	return

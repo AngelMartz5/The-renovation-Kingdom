@@ -22,9 +22,15 @@ func Enter():
 	OWNER.information.animation_component.SetAnimationPlayer(AnimationTO)
 
 func Update(delta:float):
+	
 	if !information.isPlayerFallen:
-		if state_machine.rollST.exist:
+		if state_machine.rollST.exist or state_machine.rollST.existLand:
 			print("ENTRO A ROLLLLLLLLLLLLLLLLLLLLLLLLEAR")
 			Transitioned.emit(self, "Roll")
 		else:
 			Transitioned.emit(self, "Idle")
+	if information.stateAtack:
+			if state_machine.atackST.exist:
+				if information.atack_component.attack():
+					print("ATACKED")
+					Transitioned.emit(self, "Atack")

@@ -16,6 +16,11 @@ enum AtacksAvalibles {
 	{"Attack3" : false ,   "CanDo" : false , "Number" : 0 ,"Nombre" : "Ataque Terciario"},
 	{"AttackEsp" : false , "CanDo" : false , "Number" : 0 ,"Nombre" : "Ataque Especial"}
 ]
+
+var AtackInTheAir = [
+	{"AtackFall" : false}
+]
+
 @export var cooldown: float = 1.0
 @export var inmunityCoolDown : float = 1.0
 @export var hasInmunity : bool = false
@@ -30,22 +35,33 @@ enum AtacksAvalibles {
 @onready var imunity_timer = $ImunityTimer as Timer
 @onready var atack = $"../State Machine/Atack" as Atack
 @onready var information = $"../Information" as INFORMATION
-
+@onready var state_machine = $"../State Machine"
 
 var cooldownFinished : bool = true
 var _can_attack := true
 var _owner: Node = null
 signal attacked(target)
-
 signal CooldownCalculated(howMuch)
 
 func _ready():
 	_owner = get_parent()
 	_setArsenal()
 	cooldown_timer.wait_time = cooldown
+	await SignalBus.SetEverything
+	information.Flying.connect(_whenItInTheAir)
 
 func _getFromArsenal() -> String:
 	var Name : String = ""
+	var volando : bool = true if information.isPlayerFallen else false
+	print("IS FLYING?: "+str(volando))
+	if volando:
+		var doesItExist : bool = animation_component.GetAnimationPlayer(AnimationComponent.animationsInHasAnimations.fallAtack)
+		if doesItExist:
+			for atackFly in AtackInTheAir:
+				var current = atackFly.keys()[0]
+				print("FLYING VALUE: : "+str(current))
+				return current
+	
 	for arsenal in ArsenalDeAtaques:
 		var current = arsenal.keys()[0]
 		if arsenal[current]:
@@ -87,14 +103,20 @@ func _setArsenal(AtackA : int = AtacksAvalibles.Atack1 , canDoComponent : bool =
 				arsenal[current] = true
 			Where += 1
 
-func _nextAttack():
-	if NumbersAvalibles.size() <=1 or !hasMoreAttacks:
-		return
-	var NextAttack : int = ActualAttack +1
-	ActualAttack = _find_nearest_forward(NextAttack)
-	_setArsenal(ActualAttack)
-	atack.AnimationTO = _getAtackNumber(ActualAttack)
-	print(str(ActualAttack) + " Y ACTUAL DIALLOG: " + str(_getFromArsenal()) + " Y ESTE ANIMATIONTO: " + str(atack.AnimationTO))
+func _nextAttack(siguiente : bool = true, volando : bool = false):
+	if volando:
+		atack.AnimationTO = AnimationComponent.animationsInHasAnimations.fallAtack
+	else:
+		if siguiente:
+			if NumbersAvalibles.size() <=1 or !hasMoreAttacks:
+				return
+			var NextAttack : int = ActualAttack +1
+			ActualAttack = _find_nearest_forward(NextAttack)
+			_setArsenal(ActualAttack)
+			atack.AnimationTO = _getAtackNumber(ActualAttack)
+			print(str(ActualAttack) + " Y ACTUAL DIALLOG: " + str(_getFromArsenal()) + " Y ESTE ANIMATIONTO: " + str(atack.AnimationTO))
+		else:
+			atack.AnimationTO = _getAtackNumber(ActualAttack)
 
 func _appearProjectile():
 	pass
@@ -208,3 +230,10 @@ func attack()->bool:
 		cooldown_timer.start()
 		
 	return pudoAtacar
+
+func _whenItInTheAir(isRightNowFlying : bool):
+	if !information.gravity.fly:
+		if isRightNowFlying:
+			_nextAttack(false,true)
+		else:
+			_nextAttack(false)

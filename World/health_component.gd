@@ -6,7 +6,7 @@ signal ChangeLife
 @onready var atack_component = $"../AtackComponent" as AttackComponent
 @onready var animation_component = $"../AnimationComponent" as AnimationComponent
 @export var max_health : float = 10
-var current_health : float = 1.0 : set = _current_health
+@export var current_health : float = 1.0 : set = _current_health
 @onready var information = $"../Information" as INFORMATION
 
 func _ready() -> void:

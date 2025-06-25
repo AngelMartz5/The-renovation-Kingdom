@@ -97,7 +97,6 @@ func _input(event):
 			controller.global_position = ActualPlayer.global_position
 			text_actions.global_position = ActualPlayer.global_position
 
-
 func _somebodyentered(body:Node2D = null):
 	var helpbool : bool = Myinformation.interact_component.somebodyAvalible
 	_showTxtButtons(helpbool)

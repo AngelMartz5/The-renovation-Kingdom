@@ -9,6 +9,8 @@ var finalitation  :bool = false
 @onready var animation_component: Node = $"../../AnimationComponent" as AnimationComponent
 @onready var animation_tree = $"../../AnimationTree"  as AnimationTree
 
+var existLand : bool = false
+
 func _ready():
 	if OWNER == null:
 		OWNER = owner.owner
@@ -18,17 +20,26 @@ func _ready():
 	await SignalBus.SetEverything 
 	var valueResult : bool = animation_component.GetAnimationPlayer(AnimationTO)
 	exist = valueResult
+	var valueResult2 : bool = animation_component.GetAnimationPlayer(AnimationComponent.animationsInHasAnimations.land)
+	existLand = valueResult2
 
 func Enter(): 
 	information.canCharacterJump = false
 	finalitation = false
 	var where = information.animation_component.beforeAnimation
 	if where == AnimationComponent.animationsInHasAnimations.fallen:
-		if movement.movement.x != 0:
-			OWNER.information.animation_component.SetAnimationPlayer(AnimationTO)
+		if existLand and exist:
+			if movement.movement.x != 0:
+				OWNER.information.animation_component.SetAnimationPlayer(AnimationTO)
+			else:
+				var AnimationTo2 = AnimationComponent.animationsInHasAnimations.land
+				animation_component.SetAnimationPlayer(AnimationTo2)
 		else:
-			var AnimationTo2 = AnimationComponent.animationsInHasAnimations.land
-			animation_component.SetAnimationPlayer(AnimationTo2)
+			if existLand:
+				var AnimationTo2 = AnimationComponent.animationsInHasAnimations.land
+				animation_component.SetAnimationPlayer(AnimationTo2)
+			else:
+				OWNER.information.animation_component.SetAnimationPlayer(AnimationTO)
 	else:
 		OWNER.information.animation_component.SetAnimationPlayer(AnimationTO)
 

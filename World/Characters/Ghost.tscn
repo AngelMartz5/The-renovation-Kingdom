@@ -307,6 +307,16 @@ allActionsTogether = [{
 }, {
 "get_damage": false
 }, {
+"is_jump": false
+}, {
+"is_fallen": false
+}, {
+"is_land": false
+}, {
+"is_rolling": false
+}, {
+"is_fallingAtack": false
+}, {
 "is_atack": false
 }, {
 "is_atack2": false
@@ -354,7 +364,7 @@ position = Vector2(-2.33333, 18)
 scale = Vector2(-0.412, 0.411)
 sprite_frames = SubResource("SpriteFrames_5gk6u")
 animation = &"Idle"
-frame = 3
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")

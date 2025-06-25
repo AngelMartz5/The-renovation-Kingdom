@@ -12,6 +12,7 @@ enum animationsInHasAnimations{
 	fallen,  #12
 	land,  #13
 	roll, # 14
+	fallAtack,
 	atack1,#7
 	atack2,#8
 	atack3,#9
@@ -20,6 +21,7 @@ enum animationsInHasAnimations{
 @onready var atack_component = $"../AtackComponent" as AttackComponent
 @onready var animation_player = $"../AnimationPlayer" as AnimationPlayer
 @onready var animation_tree = $"../AnimationTree" as AnimationTree
+
 var especialAnim : String = ""
 var obligated : String = "parameters/conditions/"
 var beforeAnimation : int = 0
@@ -36,10 +38,12 @@ var onAnimation : bool = false
 	{"is_fallen" : false},  #12
 	{"is_land" : false},  # 13
 	{"is_rolling" : false}, # 14
+	{"is_fallingAtack": false},
 	{"is_atack" : true},#7
 	{"is_atack2" : false},#8
 	{"is_atack3" : false},#9
 	{"is_atackEsp" : false} #10
+	
 ]
 
 func _ready():
@@ -93,6 +97,7 @@ func SetAnimationPlayer(ExactAnimation : animationsInHasAnimations) -> bool:
 	return true
 
 func _actualizarAtack():
+	
 	var where : int = 0
 	var where2 : int =0
 	for anim in allActionsTogether:   
