@@ -122,26 +122,32 @@ func _appearProjectile():
 	pass
 
 # TIENES QUE MANUALMENTE MOVER EL NODO EN LA PUNTA DEL ARCO O DONDE SEA QUE QUIERAS QUE APAREZCA
-func _appearArrow(KnowWhereTargetIs:bool = false,UseSpecialRow : bool = false,Correction : Vector2 = Vector2(120,40)):
+func _appearArrow(KnowWhereTargetIs:bool = false, UseSpecialRow:bool = false, DirectionBullet:Vector2 = Vector2.RIGHT, Correction:Vector2 = Vector2(120,40)):
 	if !KnowWhereTargetIs:
-		if  normalProjectiles.size() == 0:
+		if normalProjectiles.size() == 0:
 			return
-		var aleatoriedad : int = randi_range(0,0)
+		var aleatoriedad : int = randi_range(0, 0)
 		if aleatoriedad > normalProjectiles.size():
-			aleatoriedad = normalProjectiles.size()-1
-		print("ALEAOTIEDAD: "+str(aleatoriedad))
+			aleatoriedad = normalProjectiles.size() - 1
+		print("ALEATORIEDAD: "+str(aleatoriedad))
 		var projectile : Node2D = normalProjectiles[aleatoriedad].instantiate()
 		SignalBus.Actualworld.add_child(projectile)
-		projectile.global_position.y = owner.global_position.y+Correction.y
+
+		if DirectionBullet.x != 0 and DirectionBullet.y != 0:
+			projectile.information.area_atack.DestroyAfterDamage = false
+
+		# Aplica un pequeño margen aleatorio a la altura
+		var offset_y := Correction.y + randf_range(-20, 20)
+		projectile.global_position.y = owner.global_position.y + offset_y
+
 		if information.DirectionFace:
 			projectile.global_position.x = owner.global_position.x + Correction.x
-			projectile.information.movimiento_ai_prueba.DirectionIA = Vector2.RIGHT
-			#projectile.information.movimiento_ai_prueba.DirectionIA = Vector2.RIGHT
-		else :
+			projectile.information.movimiento_ai_prueba.DirectionIA = DirectionBullet
+		else:
 			if projectile.position.x > 0:
 				projectile.position.x *= -1
 			projectile.global_position.x = owner.global_position.x - Correction.x
-			projectile.information.movimiento_ai_prueba.DirectionIA = Vector2.LEFT
+			projectile.information.movimiento_ai_prueba.DirectionIA = Vector2(DirectionBullet.x * -1, DirectionBullet.y)
 	else:
 		if UseSpecialRow:
 			var projectile : Node2D = EspecialAtack.instantiate()

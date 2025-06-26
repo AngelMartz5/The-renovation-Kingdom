@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://cpjrflf5pnt1v"]
 
 [ext_resource type="Script" path="res://World/Characters/nut_shell_player.gd" id="1_m16c3"]
-[ext_resource type="PackedScene" uid="uid://dt5ql3ofoxyj" path="res://World/Characters/Bow/leaf_elf.tscn" id="2_ll71n"]
+[ext_resource type="PackedScene" uid="uid://0pyddoxul31u" path="res://World/Characters/Sword/Mauler.tscn" id="2_ochip"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_xxwx6"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_yoa41"]
 [ext_resource type="FontFile" uid="uid://dvvs3esplqrf1" path="res://Fonts/PressStart2P.ttf" id="4_cqsjp"]
@@ -25,7 +25,7 @@ ease = 2
 script = ExtResource("1_m16c3")
 AnimationTO = 5
 
-[node name="LeafElf" parent="." instance=ExtResource("2_ll71n")]
+[node name="Mauler" parent="." instance=ExtResource("2_ochip")]
 
 [node name="InteractCamera2D" type="Node2D" parent="."]
 top_level = true

@@ -19,6 +19,7 @@ var tagetAlreadyAttack : Array[Node2D] = []
 @onready var information = $"../../Information"
 @onready var timer_attack = $TimerAttack as Timer
 var RealDamage : float = 0.0
+@onready var vision_atack = $VisionAtack as CollisionShape2D
 
 
 #Aqui poner que haga la accion de atackar y que pueda detectar quien esta dentro de su area 
@@ -129,3 +130,6 @@ func _setAttackType(NewType : AttackType):
 			damage = RealDamage
 			RealDamage = 0
 	attack_type = NewType
+
+func _atackDisable():
+	vision_atack.disabled = true

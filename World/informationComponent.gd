@@ -24,8 +24,8 @@ class_name INFORMATION
 @export var isPeaceful : bool = true
 @export var NearestPerson : Node2D = null
 @export var isPlayerFallen : bool = false
-
 @export var seParaParaAtacar : bool = false
+@export var distanceHealthBar : float = 3
 # Target es necesario especificarlo en cada personaje
 var atacking : bool = false
 var jumped : bool = false

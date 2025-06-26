@@ -56,6 +56,7 @@ func _set_myInformation(info : INFORMATION):
 		Myinformation.interact_component.somebodyAvalible = false
 	myinteract = info.interact
 	Myinformation = info
+	print("MY COLLISHION SHAPE SIZE IS: "+str(Myinformation.collision_shape_2d.shape.extents ))
 	life_and_stamina_bar._setHealthComponent(Myinformation.health_component)
 	
 	myinteract_component = info.interact_component
@@ -77,7 +78,9 @@ func _set_myinteract_component(new : INTERACT):
 
 func _process(delta):
 	if SignalBus.isallcompleted and myinteract != null:
-		life_and_stamina_bar.global_position = ActualPlayer.global_position
+		var sizeShape = Myinformation.collision_shape_2d.shape.extents 
+		var distance : float = Myinformation.distanceHealthBar
+		life_and_stamina_bar.global_position =  Vector2(0,-distance * sizeShape.y) + ActualPlayer.global_position
 
 
 func _input(event):

@@ -850,6 +850,56 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Visuals/AreaAtack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_hacerDaño"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Visuals/AreaAtack/VisionAtack:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0666667, 0.2, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-32.9167, -4.41667), Vector2(-22, -4.41667), Vector2(-32.9167, -4.41667)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Visuals/AreaAtack/VisionAtack:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.72, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Visuals/AreaAtack/VisionAtack:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.068469, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_6bn13"]
 length = 0.6
@@ -1854,9 +1904,9 @@ allActionsTogether = [{
 }, {
 "is_fallen": true
 }, {
-"is_land": false
+"is_land": true
 }, {
-"is_rolling": false
+"is_rolling": true
 }, {
 "is_fallingAtack": true
 }, {
@@ -1872,7 +1922,7 @@ allActionsTogether = [{
 [node name="Gravity" parent="." instance=ExtResource("8_886e8")]
 
 [node name="Interact" parent="." instance=ExtResource("9_am2r6")]
-position = Vector2(0, -12.6667)
+position = Vector2(0, -41)
 
 [node name="InteractCollision" parent="Interact" index="0"]
 position = Vector2(7.5, 35.25)
@@ -1889,11 +1939,11 @@ information = NodePath("../Information")
 [node name="State Machine" parent="." instance=ExtResource("13_2weft")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, 28.3333)
+position = Vector2(6, -1.90735e-06)
 shape = SubResource("RectangleShape2D_51eef")
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(0, -12.6667)
+position = Vector2(0, -41)
 
 [node name="AreaVision" parent="Visuals" instance=ExtResource("14_e7u1w")]
 
@@ -1901,7 +1951,7 @@ position = Vector2(0, -12.6667)
 texture_filter = 1
 scale = Vector2(1.00347, 1)
 sprite_frames = SubResource("SpriteFrames_5gk6u")
-animation = &"Idle"
+animation = &"AtackFall"
 autoplay = "Idle"
 
 [node name="AreaAtack" parent="Visuals" instance=ExtResource("15_3u0x0")]

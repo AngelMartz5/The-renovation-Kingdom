@@ -67,7 +67,7 @@ func _physics_process(delta):
 				OWNER.velocity.y = movement.y * Velocidad_Actual 
 		else:
 			OWNER.velocity.x = velocidadCorrecta
-		_convertidor(movement.x)
+		_convertidor(movement)
 	else:
 		if !information.needsAcomodation :
 			movement = Vector2.ZERO
@@ -116,11 +116,25 @@ func _desplazamiento():
 func _detenimiento(Number : int ):
 	owner.velocity.x = Number
 
-func _convertidor(numero : int):
-	if numero > 0 :
+func _convertidor(numeroV : Vector2):
+	# Dirección horizontal
+	if numeroV.x > 0:
 		information.DirectionFace = true
-	elif numero < 0:
+	elif numeroV.x < 0:
 		information.DirectionFace = false
+	
+	# Si el objeto puede volar, permitimos rotación libre
+	if information.gravity != null and information.gravity.fly:
+		
+		if numeroV.length() > 0.01:
+			var angle
+			# Rotación hacia la dirección del movimiento
+			if information.DirectionFace:
+				angle= atan2(numeroV.y, numeroV.x)
+			else:
+				angle= atan2(numeroV.y*-1, numeroV.x*-1)
+			OWNER.rotation = angle
+
 
 func _voltear(bol : bool = false):
 	if bol:
@@ -135,7 +149,7 @@ func _FromtoTo(from : Vector2, To : Vector2, me : Node2D) -> bool:
 	var distancia = from.distance_to(To)
 
 	# Agregado de control para cortar el bucle si está suficientemente cerca
-	if distancia <= 1.0:
+	if distancia <= 1.5:
 		_movimiento(0)
 		print("¡Destino alcanzado!")
 		return true

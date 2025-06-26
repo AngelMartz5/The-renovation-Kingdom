@@ -13,7 +13,8 @@ func _process(delta):
 		if !information.isonAction and !information.needsAcomodation and !_necesitaPararseParaAtacar():
 			if !controllPlayer:
 				if movement.wallColliding:
-					DirectionIA.x *= -1
+					#DirectionIA.x *= -1
+					pass
 				
 				DirectionIaTGo = DirectionIA
 			else:

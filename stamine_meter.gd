@@ -16,7 +16,9 @@ var max_angle = 4.7
 
 func _draw():
 	if nut_shell_player.ActualPlayer != null and (Value < max_value or fade_opacity > 0):
-		var player_pos = to_local(nut_shell_player.ActualPlayer.global_position)
+		var sizeShape = OWNER.information.collision_shape_2d.shape.extents 
+		var distance : float = OWNER.information.distanceHealthBar+0.6
+		var player_pos = to_local(OWNER.global_position + Vector2(0,-distance * sizeShape.y))
 		var pos = player_pos + Vector2(0, -30)
 
 		# Interpolación del color de gris (inicio) a azul (fin)

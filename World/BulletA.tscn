@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dge6g8j65kixg" path="res://Components/area_atack.tscn" id="16_2lysr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51eef"]
-size = Vector2(33.3333, 3.33333)
+size = Vector2(27.5326, 3.33333)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwcxc"]
 atlas = ExtResource("7_gnral")
@@ -363,7 +363,7 @@ collision_layer = 64
 script = ExtResource("1_uqqcm")
 
 [node name="Information" parent="." instance=ExtResource("2_d6wrd")]
-velocidad_inicial = 500
+velocidad_inicial = 600
 distanceBetweenThem = 1000.0
 NAME = "Mauler"
 
@@ -375,11 +375,12 @@ OWNER = NodePath("..")
 information = NodePath("../Information")
 
 [node name="MovimientoAiPrueba" parent="." instance=ExtResource("12_8eqat")]
+DirectionIA = Vector2(1, 0)
 
 [node name="DesapearComponent" parent="." instance=ExtResource("6_f7g5l")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.3334, 0.666667)
+position = Vector2(-0.566961, 0.666667)
 shape = SubResource("RectangleShape2D_51eef")
 
 [node name="Visuals" type="Node2D" parent="."]
